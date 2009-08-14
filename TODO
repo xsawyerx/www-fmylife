@@ -1,0 +1,22 @@
+list of stuff that needs be done, hopefully organized by stable releases:
+(this is just a quick roadmap, so much of this might change)
+
+0.01:
+    - finish minimum test coverage
+    - add warning that API might still change
+
+0.02:
+    - cover main objects and attributes
+
+0.03:
+    - cover main methods
+
+0.04:
+    - increase test coverage (Devel::Cover can help)
+    - add documentation
+    - prepare for 1st stable release
+
+0.05:
+    - refactor code as much as possible
+    - try to get to 100% support of API
+    - helper functions
