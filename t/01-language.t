@@ -1,4 +1,5 @@
 #!perl
+# checking 'language' attribute
 
 use strict;
 use warnings;

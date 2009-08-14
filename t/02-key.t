@@ -1,4 +1,5 @@
 #!perl
+# checking 'key' attribute
 
 use strict;
 use warnings;
