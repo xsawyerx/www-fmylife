@@ -3,9 +3,7 @@
 use strict;
 use warnings;
 
-use Test::More tests => 5;
-
-use_ok( 'WWW::FMyLife', 'Using WWW::FMyLife' );
+use Test::More tests => 4;
 
 my $fml = WWW::FMyLife->new();
 is( $fml->language, 'en', 'default language is English' );
