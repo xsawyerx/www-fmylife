@@ -1,55 +1,78 @@
-WWW-FMyLife
+NAME
+    WWW::FMyLife - Obtain FMyLife.com anectodes via API
 
-The README is used to introduce the module and provide instructions on
-how to install the module, any machine dependencies it may have (for
-example C compilers and installed libraries) and any other information
-that should be provided before the module is installed.
+VERSION
+    Version 0.01
 
-A README file is required for CPAN modules since CPAN extracts the README
-file from a module distribution so that people browsing the archive
-can use it to get an idea of the module's uses. It is usually a good idea
-to provide version information here so that people can decide whether
-fixes for the module are worth downloading.
+SYNOPSIS
+    This module fetches FMyLife.com (FML) anecdotes, comments, votes and
+    more via API, comfortably.
 
+        use WWW::FMyLife;
 
-INSTALLATION
+        my $fml    = WWW::FMyLife->new();
+        print map { "Items: $_\n" } $fml->items();
 
-To install this module, run the following commands:
+        my @items = $fml->items( { as => 'objects' } );
+        foreach my $item (@items) {
+            my $i_id      = $item->id;
+            my $i_content = $item->content;
+            print "[$i_id] $i_content\n";
+        }
+        ...
 
-	perl Build.PL
-	./Build
-	./Build test
-	./Build install
+EXPORT
+    This module exports nothing.
 
-SUPPORT AND DOCUMENTATION
+METHODS
+  credentials( $username, $password )
+    Sets credentials for members.
 
-After installing, you can find documentation for this module with the
-perldoc command.
+        $fml->credentials( 'foo', 'bar' );
 
-    perldoc WWW::FMyLife
+        # the same as:
+        $fml->username('foo');
+        $fml->password('bar');
 
-You can also look for information at:
+AUTHORS
+    Sawyer X (XSAWYERX), "<xsawyerx at cpan.org>" Tamir Lousky (TLOUSKY),
+    "<tlousky at cpan.org>"
 
-    RT, CPAN's request tracker
-        http://rt.cpan.org/NoAuth/Bugs.html?Dist=WWW-FMyLife
+BUGS
+    Please report any bugs or feature requests to "bug-www-fmylife at
+    rt.cpan.org", or through the web interface at
+    <http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-FMyLife>.
 
-    AnnoCPAN, Annotated CPAN documentation
-        http://annocpan.org/dist/WWW-FMyLife
+SUPPORT
+    You can find documentation for this module with the perldoc command.
 
-    CPAN Ratings
-        http://cpanratings.perl.org/d/WWW-FMyLife
+        perldoc WWW::FMyLife
 
-    Search CPAN
-        http://search.cpan.org/dist/WWW-FMyLife/
+    You can also look for information at:
 
+    *   RT: CPAN's request tracker
 
-COPYRIGHT AND LICENCE
+        <http://rt.cpan.org/NoAuth/Bugs.html?Dist=WWW-FMyLife>
 
-Copyright (C) 2009 Sawyer X
+    *   AnnoCPAN: Annotated CPAN documentation
 
-This program is free software; you can redistribute it and/or modify it
-under the terms of either: the GNU General Public License as published
-by the Free Software Foundation; or the Artistic License.
+        <http://annocpan.org/dist/WWW-FMyLife>
 
-See http://dev.perl.org/licenses/ for more information.
+    *   CPAN Ratings
+
+        <http://cpanratings.perl.org/d/WWW-FMyLife>
+
+    *   Search CPAN
+
+        <http://search.cpan.org/dist/WWW-FMyLife/>
+
+ACKNOWLEDGEMENTS
+COPYRIGHT & LICENSE
+    Copyright 2009 Sawyer X, Tamir Lousky.
+
+    This program is free software; you can redistribute it and/or modify it
+    under the terms of either: the GNU General Public License as published
+    by the Free Software Foundation; or the Artistic License.
+
+    See http://dev.perl.org/licenses/ for more information.
 
