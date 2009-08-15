@@ -4,6 +4,9 @@ use Moose;
 
 our $VERSION = '0.01';
 
+# Language attribute
+has 'language' => ( is => 'rw', isa => 'Str', default => 'en' );
+
 1;
 
 __END__
