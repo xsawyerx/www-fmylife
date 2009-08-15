@@ -11,6 +11,14 @@ has 'language' => ( is => 'rw', isa => 'Str', default => 'en' );
 has 'username' => ( is => 'rw', isa => 'Str' );
 has 'password' => ( is => 'rw', isa => 'Str' );
 
+# Credentials sub: sets username and password as an array
+sub credentials {
+    my ( $self, $user, $pass ) = @_;
+    $self->username ( $user );
+    $self->password ( $pass );
+}
+
+
 1;
 
 __END__
