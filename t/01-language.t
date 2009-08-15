@@ -11,7 +11,7 @@ my $fml = WWW::FMyLife->new();
 is( $fml->language, 'en', 'default language is English' );
 
 $fml->language('fr');
-is( $fml->langauge, 'fr', 'can change language to French' );
+is( $fml->language, 'fr', 'can change language to French' );
 
 $fml = WWW::FMyLife->new( { language => 'en' } );
 is( $fml->language, 'en', 'Can set language on initialize to English' );
