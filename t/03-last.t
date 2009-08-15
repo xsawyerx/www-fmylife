@@ -10,43 +10,43 @@ use Test::More tests => 43;
 my $fml  = WWW::FMyLife->new();
 my @last = $fml->last();
 
-cmp_ok( scalar @last, '==' 15, 'Got last 15 quotes' );
+cmp_ok( scalar @last, '==' 15, 'Got last 15 items' );
 
-# checking one of the quotes
-my $quote      = shift @last;
+# checking one of the items
+my $item       = shift @last;
 my @attribtues = qw(
     author category date agree deserved text
 );
 
 foreach my $attribute (@attributes) {
-    ok( $quote->$attribute, "Quote has $attribute" );
+    ok( $item->$attribute, "Item has $attribute" );
 }
 
-if ( $quote->comments_flag ) {
-    ok( $quote->comments, 'Quote has comments' );
+if ( $item->comments_flag ) {
+    ok( $item->comments, 'Item has comments' );
 } else {
-    ok( ! $quote->comments, 'Quote does not have comments' );
+    ok( ! $item->comments, 'Item does not have comments' );
 }
 
-# types of getting the quotes
+# types of getting the items
 
-# flat array of quotes' text
+# flat array of items' text
 @last = $fml->last( { as => 'text' } );
 foreach my $last (@last) {
     # hoping this scalar is a string and not a number
-    is( ref $last, 'SCALAR', 'Quote (as flat) is a string of text' );
+    is( ref $last, 'SCALAR', 'Item (as flat) is a string of text' );
     # XXX: possible add test to check if it's a string? or minimum length?
 }
 
-# array of objects of quotes
+# array of objects of items
 @last = $fml->last( { as => 'object' } );
 foreach my $last (@last) {
-    isa_ok( $last, 'WWW::FMyLife::Quote', 'Quote is an object' );
+    isa_ok( $last, 'WWW::FMyLife::Item', 'Item is an object' );
 }
 
-# array of hashes of quotes
+# array of hashes of items
 @last = $fml->last( { as => 'data' } );
 foreach my $last (@last) {
-    is( ref $last, 'HASH', 'Quote is a hashref' );
+    is( ref $last, 'HASH', 'Item is a hashref' );
 }
 
