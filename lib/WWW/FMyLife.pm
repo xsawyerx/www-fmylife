@@ -18,7 +18,6 @@ sub credentials {
     $self->password ( $pass );
 }
 
-
 1;
 
 __END__
@@ -38,13 +37,13 @@ This module fetches FMyLife.com (FML) anecdotes, comments, votes and more via AP
     use WWW::FMyLife;
 
     my $fml    = WWW::FMyLife->new();
-    print map { "Quote: $_\n" } $fml->quotes();
+    print map { "Items: $_\n" } $fml->items();
 
-    my @quotes = $fml->quotes( { as => 'objects' } );
-    foreach my $quote (@quotes) {
-        my $q_id      = $quote->id;
-        my $q_content = $quote->content;
-        print "[$q_id] $q_content\n";
+    my @items = $fml->items( { as => 'objects' } );
+    foreach my $item (@items) {
+        my $i_id      = $item->id;
+        my $i_content = $item->content;
+        print "[$i_id] $i_content\n";
     }
     ...
 
@@ -54,13 +53,15 @@ This module exports nothing.
 
 =head1 METHODS
 
-=head2 quotes
+=head2 credentials( $username, $password )
 
-Fetch all quotes, with possible hashref to indicate the format they return in.
+Sets credentials for members.
 
-=head2 top
+    $fml->credentials( 'foo', 'bar' );
 
-Fetch all the top quotes.
+    # the same as:
+    $fml->username('foo');
+    $fml->password('bar');
 
 =head1 AUTHORS
 
