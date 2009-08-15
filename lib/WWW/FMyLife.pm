@@ -7,6 +7,10 @@ our $VERSION = '0.01';
 # Language attribute
 has 'language' => ( is => 'rw', isa => 'Str', default => 'en' );
 
+# Username and Password attributes
+has 'username' => ( is => 'rw', isa => 'Str' );
+has 'password' => ( is => 'rw', isa => 'Str' );
+
 1;
 
 __END__
