@@ -30,7 +30,7 @@ is( $fml->token(), '', 'Clearing token' );
 # checking runtime credentials
 $fml = WWW::FMyLife->new();
 $fml->credentials( 'foo', 'bar' );
-is( $user, 'foo', 'Credentials for user set' );
-is( $pass, 'bar', 'Credentials for pass set' );
+is( $fml->username, 'foo', 'Credentials for user set' );
+is( $fml->password, 'bar', 'Credentials for pass set' );
 ok( $fml->token(), 'Clearing token' );
 
