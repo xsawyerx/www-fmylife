@@ -31,7 +31,7 @@ if ( $quote->comments_flag ) {
 # types of getting the quotes
 
 # flat array of quotes' text
-@last = $fml->last( { as => 'flat' } );
+@last = $fml->last( { as => 'text' } );
 foreach my $last (@last) {
     # hoping this scalar is a string and not a number
     is( ref $last, 'SCALAR', 'Quote (as flat) is a string of text' );

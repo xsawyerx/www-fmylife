@@ -3,6 +3,9 @@ list of stuff that needs be done, hopefully organized by stable releases:
 
 0.01:
     - finish minimum test coverage
+    - add to last() the option to get a page number
+    - add tests for random
+    - add tests for top (with the option to get page number)
     - add warning that API might still change
 
 0.02:
@@ -20,3 +23,6 @@ list of stuff that needs be done, hopefully organized by stable releases:
     - refactor code as much as possible
     - try to get to 100% support of API
     - helper functions
+
+0.06:
+    - pagers with next() and previous() for pages
