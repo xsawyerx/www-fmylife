@@ -3,6 +3,7 @@
 
 use strict;
 use warnings;
+use WWW::FMyLife;
 
 use Test::More tests => 4;
 

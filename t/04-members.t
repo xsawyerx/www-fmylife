@@ -5,9 +5,9 @@
 
 use strict;
 use warnings;
+use WWW::FMyLife;
 
 use Test::More tests => 7;
-use WWW::FMyLife;
 
 # TODO: mock LWP in order to check this
 my $fml = WWW::FMyLife->new( {
