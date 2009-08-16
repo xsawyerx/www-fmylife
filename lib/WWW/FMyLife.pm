@@ -1,15 +1,26 @@
 package WWW::FMyLife;
 
 use Moose;
+use LWP::UserAgent;
 
 our $VERSION = '0.01';
 
-# Language attribute
 has 'language' => ( is => 'rw', isa => 'Str', default => 'en' );
-
-# Username and Password attributes
 has 'username' => ( is => 'rw', isa => 'Str' );
 has 'password' => ( is => 'rw', isa => 'Str' );
+has 'token'    => ( is => 'rw', isa => 'Str' );
+
+has 'api_url' => (
+    is      => 'rw',
+    isa     => 'Str', # TODO type of uri
+    default => 'http://api.betacie.com',
+);
+
+has 'agent' => (
+    is      => 'rw',
+    isa     => 'Object',
+    default => sub { LWP::UserAgent->new(); },
+);
 
 # Credentials sub: sets username and password as an array
 sub credentials {
