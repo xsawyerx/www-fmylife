@@ -11,11 +11,11 @@ use Test::More tests => 43;
 my $fml  = WWW::FMyLife->new();
 my @last = $fml->last();
 
-cmp_ok( scalar @last, '==' 15, 'Got last 15 items' );
+cmp_ok( scalar @last, '==', 15, 'Got last 15 items' );
 
 # checking one of the items
 my $item       = shift @last;
-my @attribtues = qw(
+my @attributes = qw(
     author category date agree deserved text
 );
 
