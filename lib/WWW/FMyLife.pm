@@ -5,10 +5,11 @@ use LWP::UserAgent;
 
 our $VERSION = '0.01';
 
-has 'language' => ( is => 'rw', isa => 'Str', default => 'en' );
 has 'username' => ( is => 'rw', isa => 'Str' );
 has 'password' => ( is => 'rw', isa => 'Str' );
+has 'language' => ( is => 'rw', isa => 'Str', default => 'en' );
 has 'token'    => ( is => 'rw', isa => 'Str' );
+has 'key'      => ( is => 'rw', isa => 'Str', default => 'readonly' );
 
 has 'api_url' => (
     is      => 'rw',
