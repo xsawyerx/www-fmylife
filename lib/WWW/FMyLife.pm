@@ -30,6 +30,10 @@ sub credentials {
     $self->password ( $pass );
 }
 
+sub last {
+
+}
+
 1;
 
 __END__
