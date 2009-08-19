@@ -2,18 +2,20 @@ package WWW::FMyLife;
 
 use Moose;
 use LWP::UserAgent;
+#use MooseX::Types::URI qw( Uri ); # this doesn't work for some reason
 
 our $VERSION = '0.01';
 
 has 'username' => ( is => 'rw', isa => 'Str' );
 has 'password' => ( is => 'rw', isa => 'Str' );
-has 'language' => ( is => 'rw', isa => 'Str', default => 'en' );
-has 'token'    => ( is => 'rw', isa => 'Str' );
+
+has 'language' => ( is => 'rw', isa => 'Str', default => 'en'       );
+has 'token'    => ( is => 'rw', isa => 'Str', default => q{}        );
 has 'key'      => ( is => 'rw', isa => 'Str', default => 'readonly' );
 
 has 'api_url' => (
     is      => 'rw',
-    isa     => 'Str', # TODO type of uri
+    isa     => 'Str', # suppose to be 'Uri' but doesn't work for some reason
     default => 'http://api.betacie.com',
 );
 
