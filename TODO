@@ -1,6 +1,10 @@
 list of stuff that needs be done, hopefully organized by stable releases:
 (this is just a quick roadmap, so much of this might change)
 
+General TODO stuff:
+- use URI type constraint on api_url attribute
+- use File::Spec for paths
+
 0.01:
     - finish minimum test coverage
     - add to last() the option to get a page number
