@@ -1,6 +1,7 @@
 package WWW::FMyLife;
 
 use Moose;
+use XML::Simple;
 use LWP::UserAgent;
 #use MooseX::Types::URI qw( Uri ); # this doesn't work for some reason
 
@@ -13,13 +14,31 @@ has 'language' => ( is => 'rw', isa => 'Str', default => 'en'       );
 has 'token'    => ( is => 'rw', isa => 'Str', default => q{}        );
 has 'key'      => ( is => 'rw', isa => 'Str', default => 'readonly' );
 
-has 'api_url' => (
+has 'api_url'  => (
     is      => 'rw',
     isa     => 'Str', # suppose to be 'Uri' but doesn't work for some reason
     default => 'http://api.betacie.com',
 );
 
-has 'agent' => (
+has 'module_error' => (
+    is      => 'rw',
+    isa     => 'Str',
+    clearer => 'clear_module_error',
+);
+
+has 'fml_errors'   => (
+    is => 'rw',
+    isa => 'ArrayRef[Str]',
+    clearer => 'clear_fml_errors',
+);
+
+has 'error'        => (
+    is      => 'rw',
+    isa     => 'Bool',
+    default => 0,
+);
+
+has 'agent'    => (
     is      => 'rw',
     isa     => 'Object',
     default => sub { LWP::UserAgent->new(); },
@@ -33,7 +52,36 @@ sub credentials {
 }
 
 sub last {
+    my $self = shift;
+    my $res  = $self->agent->post(
+        $self->api_url . '/view/last', {
+            key      => $self->key,
+            language => $self->language,
+        },
+    );
 
+    $self->error(0);
+    $self->clear_fml_errors;
+    $self->clear_module_error;
+
+    if ( ! $res->is_success ) {
+        $self->error(1);
+        $self->module_error( $res->status_line );
+        return undef;
+    }
+
+    my $xml = XMLin( $res->decoded_content );
+
+    if ( my $raw_errors = $xml->{'errors'}->{'error'} ) {
+        my $array_errors =
+            ref $raw_errors eq 'ARRAY' ? $raw_errors : [ $raw_errors ];
+
+        $self->error(1);
+        $self->fml_errors($array_errors);
+        return undef;
+    }
+
+    # return parsed last quotes
 }
 
 1;
