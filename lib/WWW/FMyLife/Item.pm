@@ -4,6 +4,18 @@ use Moose;
 
 our $VERSION = '0.01';
 
+subtype 'FMLAuthor'
+
+has 'id'            => ( is => 'rw', isa => 'Int'       );
+has 'deserved'      => ( is => 'rw', isa => 'Int'       );
+has 'date'          => ( is => 'rw', isa => '...'       );
+has 'author'        => ( is => 'rw', isa => 'FMLAuthor' );
+has 'comments'      => ( is => 'rw', isa => 'Int'       );
+has 'agree'         => ( is => 'rw', isa => 'Int'       );
+has 'text'          => ( is => 'rw', isa => 'Str'       );
+has 'category'      => ( is => 'rw', isa => 'Str'       );
+has 'comments_flag' => ( is => 'rw', isa => 'Bool'      );
+
 1;
 
 __END__
