@@ -98,7 +98,7 @@ sub _parse_items {
 
     while ( my ( $id, $item_data ) = each %{ $xml->{'items'}{'item'} } ) {
         my $item = WWW::FMyLife::Item->new(
-            id       => $id,
+            id => $id,
         );
 
         foreach my $attr ( keys %{$item_data} ) {
