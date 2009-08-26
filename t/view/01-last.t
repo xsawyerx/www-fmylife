@@ -40,7 +40,7 @@ TODO: {
     @last = $fml->last( { as => 'text' } );
     foreach my $last (@last) {
         # hoping this scalar is a string and not a number
-        is( ref $last, 'SCALAR', 'Item (as flat) is a string of text' );
+        is( ref \$last, 'SCALAR', 'Item (as flat) is a string of text' );
         # XXX: possible add test to check if it's a string? or minimum length?
     }
 

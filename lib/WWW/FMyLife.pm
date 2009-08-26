@@ -119,6 +119,12 @@ sub _parse_items_as_object {
     return @items;
 }
 
+sub _parse_items_as_text {
+    my ( $self, $xml ) = @_;
+    my @items = map { $_->{'text'} } values %{ $xml->{'items'}{'item'} };
+    return @items;
+}
+
 1;
 
 __END__
