@@ -14,6 +14,8 @@ has 'language' => ( is => 'rw', isa => 'Str', default => 'en'       );
 has 'token'    => ( is => 'rw', isa => 'Str', default => q{}        );
 has 'key'      => ( is => 'rw', isa => 'Str', default => 'readonly' );
 
+has 'pages'    => ( is => 'rw', isa => 'Int' );
+
 has 'api_url'  => (
     is      => 'rw',
     isa     => 'Str', # suppose to be 'Uri' but doesn't work for some reason
