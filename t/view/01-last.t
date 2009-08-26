@@ -20,20 +20,20 @@ my @attributes = qw(
     author category date agree deserved text
 );
 
+isa_ok( $item, 'WWW::FMyLife::Item' );
+
+foreach my $attribute (@attributes) {
+    ok( $item->$attribute, "Item has $attribute" );
+}
+
+if ( $item->comments_flag ) {
+    ok( $item->comments, 'Item has comments' );
+} else {
+    ok( ! $item->comments, 'Item does not have comments' );
+}
+
 TODO: {
-    local $TODO = 'implement last() fully';
-    isa_ok( $item, 'WWW::FMyLife::Item' );
-
-    foreach my $attribute (@attributes) {
-        ok( $item->$attribute, "Item has $attribute" );
-    }
-
-    if ( $item->comments_flag ) {
-        ok( $item->comments, 'Item has comments' );
-    } else {
-        ok( ! $item->comments, 'Item does not have comments' );
-    }
-
+    local $TODO = 'finish types of getting items';
     # types of getting the items
 
     # flat array of items' text
