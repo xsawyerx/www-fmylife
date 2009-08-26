@@ -125,6 +125,13 @@ sub _parse_items_as_text {
     return @items;
 }
 
+sub _parse_items_as_data {
+    my ( $self, $xml ) = @_;
+    my $itemsref       = $xml->{'items'}{'item'};
+    my @items          = map +{ $_ => $itemsref->{$_} }, keys %{$itemsref};
+    return @items;
+}
+
 1;
 
 __END__

@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use WWW::FMyLife;
 
-use Test::More tests => 44;
+use Test::More tests => 54;
 
 my $fml  = WWW::FMyLife->new();
 my @last = $fml->last();
@@ -47,11 +47,8 @@ foreach my $last (@last) {
     isa_ok( $last, 'WWW::FMyLife::Item', 'Item is an object' );
 }
 
-TODO: {
-    local $TODO = 'finish types of getting items';
-    # array of hashes of items
-    @last = $fml->last( { as => 'data' } );
-    foreach my $last (@last) {
-        is( ref $last, 'HASH', 'Item is a hashref' );
-    }
+# array of hashes of items
+@last = $fml->last( { as => 'data' } );
+foreach my $last (@last) {
+    is( ref $last, 'HASH', 'Item is a hashref' );
 }
