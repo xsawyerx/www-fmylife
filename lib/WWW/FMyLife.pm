@@ -4,6 +4,7 @@ use Moose;
 use XML::Simple;
 use LWP::UserAgent;
 #use MooseX::Types::URI qw( Uri ); # this doesn't work for some reason
+use WWW::FMyLife::Item;
 
 our $VERSION = '0.01';
 
@@ -84,6 +85,30 @@ sub last {
     }
 
     # return parsed last quotes
+    my @items = $self->_parse_items($xml);
+
+    return @items;
+}
+
+sub _parse_items {
+    my ( $self, $xml ) = @_;
+    my @items;
+
+    $self->pages( $xml->{'pages'} );
+
+    while ( my ( $id, $item_data ) = each %{ $xml->{'items'}{'item'} } ) {
+        my $item = WWW::FMyLife::Item->new(
+            id       => $id,
+        );
+
+        foreach my $attr ( keys %{$item_data} ) {
+            $item->$attr( $item_data->{$attr} );
+        }
+
+        push @items, $item;
+    }
+
+    return @items;
 }
 
 1;

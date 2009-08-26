@@ -1,23 +1,23 @@
 package WWW::FMyLife::Item;
 
 use Moose;
-use DateTime::Format::W3CDTF;
+use Moose::Util::TypeConstraints;
 
 our $VERSION = '0.01';
 
 subtype 'FMLAuthor'
     => as 'HashRef'
-    => where { exists $_{'content'} };
+    => where { exists shift->{'content'} };
 
-has 'id'            => ( is => 'rw', isa => 'Int'                      );
-has 'author'        => ( is => 'rw', isa => 'FMLAuthor'                );
-has 'date'          => ( is => 'rw', isa => 'DateTime::Format::W3CDTF' );
-has 'category'      => ( is => 'rw', isa => 'Str'                      );
-has 'text'          => ( is => 'rw', isa => 'Str'                      );
-has 'deserved'      => ( is => 'rw', isa => 'Int'                      );
-has 'agree'         => ( is => 'rw', isa => 'Int'                      );
-has 'comments'      => ( is => 'rw', isa => 'Int'                      );
-has 'comments_flag' => ( is => 'rw', isa => 'Bool'                     );
+has 'id'            => ( is => 'rw', isa => 'Int'       );
+has 'author'        => ( is => 'rw', isa => 'FMLAuthor' );
+has 'date'          => ( is => 'rw', isa => 'Str'       );
+has 'category'      => ( is => 'rw', isa => 'Str'       );
+has 'text'          => ( is => 'rw', isa => 'Str'       );
+has 'deserved'      => ( is => 'rw', isa => 'Int'       );
+has 'agree'         => ( is => 'rw', isa => 'Int'       );
+has 'comments'      => ( is => 'rw', isa => 'Int'       );
+has 'comments_flag' => ( is => 'rw', isa => 'Bool'      );
 
 1;
 
