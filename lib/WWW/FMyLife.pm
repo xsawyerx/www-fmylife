@@ -55,8 +55,15 @@ sub credentials {
 }
 
 sub last {
-    my $self = shift;
-    my $res  = $self->agent->post(
+    my ( $self, $opts ) = @_;
+
+    my %types = (
+        object => sub { return $self->_parse_items_as_object(@_) },
+        text   => sub { return $self->_parse_items_as_text  (@_) },
+        data   => sub { return $self->_parse_items_as_data  (@_) },
+    );
+
+    my $res = $self->agent->post(
         $self->api_url . '/view/last', {
             key      => $self->key,
             language => $self->language,
@@ -84,17 +91,17 @@ sub last {
         return undef;
     }
 
+    $self->pages( $xml->{'pages'} );
+
     # return parsed last quotes
-    my @items = $self->_parse_items($xml);
+    my @items = $types{ $opts{'as'} }->($xml);
 
     return @items;
 }
 
-sub _parse_items {
+sub _parse_items_as_objects {
     my ( $self, $xml ) = @_;
     my @items;
-
-    $self->pages( $xml->{'pages'} );
 
     while ( my ( $id, $item_data ) = each %{ $xml->{'items'}{'item'} } ) {
         my $item = WWW::FMyLife::Item->new(
