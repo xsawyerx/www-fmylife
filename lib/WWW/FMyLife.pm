@@ -146,6 +146,8 @@ Version 0.01
 
 =head1 SYNOPSIS
 
+THIS MODULE IS STILL UNDER INITIAL DEVELOPMENT! BE WARNED!
+
 This module fetches FMyLife.com (FML) anecdotes, comments, votes and more via API, comfortably.
 
     use WWW::FMyLife;
@@ -153,13 +155,17 @@ This module fetches FMyLife.com (FML) anecdotes, comments, votes and more via AP
     my $fml    = WWW::FMyLife->new();
     print map { "Items: $_\n" } $fml->items();
 
-    my @items = $fml->items( { as => 'objects' } );
+    my @items = $fml->items();
     foreach my $item (@items) {
         my $i_id      = $item->id;
         my $i_content = $item->content;
         print "[$i_id] $i_content\n";
     }
+
+    my @text_items = $fml->items( { as => 'text' } );
+    print "Items:\n", join "\n", @text_items;
     ...
+
 
 =head1 EXPORT
 
@@ -167,7 +173,23 @@ This module exports nothing.
 
 =head1 METHODS
 
-=head2 credentials( $username, $password )
+=head2 Working
+
+Right now the only thing working and tested properly is the last() method
+
+=head2 last()
+
+Fetches the last quotes. Can accept a hashref that indicates the formatting:
+
+    # returns as an array of WWW::FMyLife::Item objects
+    $fml->last();
+
+    # or, more explicitly
+    $fml->last( { as => 'object' } ); # same
+    $fml->last( { as => 'text'   } ); # returns the anecdotes as array
+    $fml->last( { as => 'data'   } ); # returns hashes with the data as array
+
+=head2 credentials( $username, $password ) (NOT YET FULLY IMPLEMENTED)
 
 Sets credentials for members.
 
