@@ -11,7 +11,7 @@
 use strict;
 use warnings;
 use WWW::FMyLife;
-use IO::Prompt;
+#use IO::Prompt;
 use English '-no_match_vars';
 
 use Test::More tests => 8;
