@@ -17,6 +17,7 @@ use English '-no_match_vars';
 use Test::More tests => 8;
 
 SKIP: {
+    skip 'Still not implemented' => 8;
     my ( $username, $password );
     eval {
         local $SIG{'ALRM'} = sub { die "input failed\n"; };
@@ -32,7 +33,7 @@ SKIP: {
         alarm 0;
     };
 
-    chomp $username, $password;
+    chomp ( $username, $password );
     if ( ( $EVAL_ERROR eq "input failed\n" ) ||
          ( !$username && !$password ) ) {
         skip "Alright, nevermind...\n", 8;
