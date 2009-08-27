@@ -25,6 +25,8 @@ my $builder = Module::Build->new(
         bugtracker => 'http://github.com/xsawyerx/www-fmylife/tree/master',
         keywords   => [ 'fml', 'fmylife' ],
     },
+    create_readme        => 1,
+    create_license       => 1,
 );
 
 $builder->create_build_script();
