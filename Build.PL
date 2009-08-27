@@ -10,9 +10,11 @@ my $builder = Module::Build->new(
         q{Tamir Lousky <tlousky@cpan.org>},
     ],
     dist_version_from    => 'lib/WWW/FMyLife.pm',
-    build_requires       => {
+    build_requires   => {
+        'Test::More' => 0,
+    },
+    requires             => {
         'Moose'          => 0.86,
-        'Test::More'     => 0,
         'LWP::UserAgent' => 0,
         'XML::Simple'    => 2.18
     },
