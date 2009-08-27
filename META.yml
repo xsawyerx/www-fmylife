@@ -1,0 +1,28 @@
+---
+name: WWW-FMyLife
+version: 0.01
+author:
+  - 'Sawyer X <xsawyerx@cpan.org>'
+  - 'Tamir Lousky <tlousky@cpan.org>'
+abstract: Obtain FMyLife.com anectodes via API
+license: perl
+resources:
+  license: http://dev.perl.org/licenses/
+build_requires:
+  LWP::UserAgent: 0
+  Moose: 0.86
+  Test::More: 0
+configure_requires:
+  Module::Build: 0.34
+provides:
+  WWW::FMyLife:
+    file: lib/WWW/FMyLife.pm
+    version: 0.01
+generated_by: Module::Build version 0.34
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.4.html
+  version: 1.4
+keywords:
+  - fml
+  - fmylife
+bugtracker: http://github.com/xsawyerx/www-fmylife/tree/master
