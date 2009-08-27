@@ -12,6 +12,9 @@ my $fml  = WWW::FMyLife->new();
 my @last = $fml->last();
 
 cmp_ok( scalar @last, '==', 15, 'Got last 15 items' );
+foreach my $last (@last) {
+    isa_ok( $last, 'WWW::FMyLife::Item', 'Item is an object' );
+}
 
 # checking one of the items
 my $item       = shift @last;
@@ -32,23 +35,39 @@ if ( $item->comments_flag ) {
 }
 
 # types of getting the items
+my @format_types = ( qw( text object data ) );
 
-# flat array of items' text
-@last = $fml->last( { as => 'text' } );
-foreach my $last (@last) {
-    # hoping this scalar is a string and not a number
-    is( ref \$last, 'SCALAR', 'Item (as flat) is a string of text' );
-    # XXX: possible add test to check if it's a string? or minimum length?
+my %format_types = (
+    text   => sub {
+        is( ref \shift, 'SCALAR', 'Item (as flat) is a string of text' )
+    },
+    object => sub {
+        isa_ok( shift, 'WWW::FMyLife::Item', 'Item is an object' )
+    },
+    data   => sub {
+        is( ref shift, 'HASH', 'Item is a hashref' );
+    },
+);
+
+while ( my ( $format_type, $type_check ) = each %format_types ) {
+    my %check_types = (
+        'Testing with formating only'     => { as => $format_type            },
+        'Testing with formating and page' => { as => $format_type, page => 2 },
+    );
+
+    foreach my $check_type ( keys %check_types ) {
+        diag("$check_type :: $format_type");
+
+        @last = $fml->last( $check_types{$check_type} );
+        cmp_ok( scalar @last, '==', 15, 'Got last 15 items' );
+
+        foreach my $last (@last) {
+            $type_check->($last);
+        }
+    }
 }
 
-# array of objects of items
-@last = $fml->last( { as => 'object' } );
-foreach my $last (@last) {
-    isa_ok( $last, 'WWW::FMyLife::Item', 'Item is an object' );
-}
+# TODO: test these too
+#'Testing with page as hash only'  => { page => 2                },
+#'Testing with page only'          => 3,
 
-# array of hashes of items
-@last = $fml->last( { as => 'data' } );
-foreach my $last (@last) {
-    is( ref $last, 'HASH', 'Item is a hashref' );
-}
