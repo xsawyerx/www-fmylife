@@ -7,7 +7,8 @@ WriteMakefile
           'PREREQ_PM' => {
                            'LWP::UserAgent' => '0',
                            'Moose' => '0.86',
-                           'Test::More' => '0'
+                           'Test::More' => '0',
+                           'XML::Simple' => '2.18'
                          },
           'INSTALLDIRS' => 'site',
           'EXE_FILES' => [],

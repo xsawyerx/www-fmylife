@@ -9,9 +9,11 @@ license: perl
 resources:
   license: http://dev.perl.org/licenses/
 build_requires:
+  Test::More: 0
+requires:
   LWP::UserAgent: 0
   Moose: 0.86
-  Test::More: 0
+  XML::Simple: 2.18
 configure_requires:
   Module::Build: 0.34
 provides:
