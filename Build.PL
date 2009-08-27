@@ -14,6 +14,7 @@ my $builder = Module::Build->new(
         'Moose'          => 0.86,
         'Test::More'     => 0,
         'LWP::UserAgent' => 0,
+        'XML::Simple'    => 2.18
     },
     recursive_test_files => 1,
     add_to_cleanup       => [ 'WWW-FMyLife-*' ],
