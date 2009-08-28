@@ -163,16 +163,16 @@ This module fetches FMyLife.com (FML) anecdotes, comments, votes and more via AP
     use WWW::FMyLife;
 
     my $fml    = WWW::FMyLife->new();
-    print map { "Items: $_\n" } $fml->items();
+    print map { "Items: $_\n" } $fml->last();
 
-    my @items = $fml->items();
+    my @items = $fml->last();
     foreach my $item (@items) {
-        my $i_id      = $item->id;
-        my $i_content = $item->content;
-        print "[$i_id] $i_content\n";
+        my $item_id      = $item->id;
+        my $item_content = $item->content;
+        print "[$item_id] $item_content\n";
     }
 
-    my @text_items = $fml->items( { as => 'text' } );
+    my @text_items = $fml->last( { as => 'text' } );
     print "Items:\n", join "\n", @text_items;
     ...
 
@@ -191,7 +191,7 @@ Right now the only thing working and tested properly is the last() method
 
 Fetches the last quotes. Can accept a hashref that indicates the formatting:
 
-    # returns as an array of WWW::FMyLife::Item objects
+    # returns an array of WWW::FMyLife::Item objects
     $fml->last();
 
     # or, more explicitly
@@ -199,13 +199,32 @@ Fetches the last quotes. Can accept a hashref that indicates the formatting:
     $fml->last( { as => 'text'   } ); # returns the anecdotes as array
     $fml->last( { as => 'data'   } ); # returns hashes with the data as array
 
+You can only specify which page you want:
+
+    # return 1st page
+    my @last = fml->last();
+
+    # return 5th page
+    my @last = $fml->last(5);
+
+    # same
+    my @last = $fml->last( { page => 5 } );
+
+And options can be mixed:
+
+    my @not_so_last = $fml->last( { as => 'text', page => 50 } );
+
 =head2 credentials( $username, $password ) (NOT YET FULLY IMPLEMENTED)
+
+WARNING: THIS HAS NOT YET BEEN IMPLEMENTED.
+
+THE TESTS HAVE BEEN DISABLED FOR NOW, PLEASE WAIT FOR A MORE ADVANCED VERSION.
 
 Sets credentials for members.
 
     $fml->credentials( 'foo', 'bar' );
 
-    # the same as:
+    # same thing
     $fml->username('foo');
     $fml->password('bar');
 
@@ -219,6 +238,8 @@ Tamir Lousky (TLOUSKY), C<< <tlousky at cpan.org> >>
 Please report any bugs or feature requests to C<bug-www-fmylife at rt.cpan.org>, or through
 the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-FMyLife>.
 
+You can also use the Issues Tracker on Github @ L<http://github.com/xsawyerx/www-fmylife/issues>.
+
 =head1 SUPPORT
 
 You can find documentation for this module with the perldoc command.
@@ -228,6 +249,10 @@ You can find documentation for this module with the perldoc command.
 You can also look for information at:
 
 =over 4
+
+=item * Our Github!
+
+L<http://github.com/xsawyerx/www-fmylife/tree/master>
 
 =item * RT: CPAN's request tracker
 
@@ -245,10 +270,11 @@ L<http://cpanratings.perl.org/d/WWW-FMyLife>
 
 L<http://search.cpan.org/dist/WWW-FMyLife/>
 
+=item * FML (FMyLife)
+
+L<http://www.fmylife.com>
+
 =back
-
-
-=head1 ACKNOWLEDGEMENTS
 
 =head1 COPYRIGHT & LICENSE
 
