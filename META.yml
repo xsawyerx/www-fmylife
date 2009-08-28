@@ -15,12 +15,12 @@ requires:
   Moose: 0.86
   XML::Simple: 2.18
 configure_requires:
-  Module::Build: 0.34
+  Module::Build: 0.340201
 provides:
   WWW::FMyLife:
     file: lib/WWW/FMyLife.pm
     version: 0.01
-generated_by: Module::Build version 0.34
+generated_by: Module::Build version 0.340201
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
   version: 1.4
