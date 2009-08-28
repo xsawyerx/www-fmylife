@@ -56,8 +56,14 @@ sub credentials {
 
 sub last {
     my ( $self, $opts ) = @_;
-    my $as   = ref $opts eq 'HASH' ? $opts->{'as'}   : 'object';
-    my $page = ref $opts eq 'HASH' ? $opts->{'page'} : 1;
+    my ( $as, $page );
+    if ( ref $opts eq 'HASH' ) {
+        $as   = $opts->{'as'};
+        $page = $opts->{'page'};
+    }
+
+    $as   ||= 'object';
+    $page ||= 1;
 
     my %types = (
         object => sub { return $self->_parse_items_as_object(@_) },
