@@ -6,7 +6,7 @@ use strict;
 use warnings;
 use WWW::FMyLife;
 
-use Test::More tests => 54;
+use Test::More tests => 122;
 
 my $fml  = WWW::FMyLife->new();
 my @last = $fml->last();
@@ -67,7 +67,37 @@ while ( my ( $format_type, $type_check ) = each %format_types ) {
     }
 }
 
-# TODO: test these too
-#'Testing with page as hash only'  => { page => 2                },
-#'Testing with page only'          => 3,
+
+SKIP: {
+    eval 'use Test::MockObject::Extends';
+    $@ && skip 'Test::MockObject required for this test', 2;
+
+    my $agent    = $fml->agent();
+    my $mock_obj = Test::MockObject::Extends->new( $fml->agent() );
+
+    $mock_obj->mock( 'is_success', sub { 1 } );
+    $mock_obj->mock(
+        'decoded_content',
+        sub {
+            '<root><pages>2</pages></root>'
+        }
+    );
+
+    $mock_obj->mock(
+        'post',
+        sub {
+            my $requested_url = $_[1];
+            my $expected_url  = 'http://api.betacie.com/view/last/3';
+            is( $requested_url, $expected_url, 'Asking for pages correctly' );
+            return $mock_obj;
+    } );
+
+    TODO: {
+        local $TODO = 'Pages not implemented yet';
+        #'Testing with page as hash only'  => { page => 2                },
+        #'Testing with page only'          => 3,
+        $fml->last(3);
+        $fml->last( { page => 3 } );
+    }
+}
 
