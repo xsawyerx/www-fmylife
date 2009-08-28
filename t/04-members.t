@@ -3,21 +3,19 @@
 # testing members functionality
 # currently testing initializer-level, without mocking LWP
 # TODO:
-# - IO::Prompt should return terminal correctly once timeout is reached
-# - IO::Prompt should not show password entered
 # - need to implement connect() method
 # - finish trying out this test script
 
 use strict;
 use warnings;
 use WWW::FMyLife;
-#use IO::Prompt;
 use English '-no_match_vars';
 
 use Test::More tests => 8;
 
 SKIP: {
     skip 'Still not implemented' => 8;
+
     my ( $username, $password );
     eval {
         local $SIG{'ALRM'} = sub { die "input failed\n"; };
@@ -27,8 +25,13 @@ SKIP: {
         print STDERR "\nFor this test, we need a username and password.\n" .
                      "(timeout is 10 seconds or just press enter twice)\n";
 
-        $username = prompt 'Username: ';
-        $password = prompt 'Password: ';
+        print 'Username: ';
+        print 'Password: ';
+
+        # FIXME: replace with some module that disguises input for password
+        # possibly Term::ReadPassword
+        $username = <>;
+        $password = <>;
 
         alarm 0;
     };
