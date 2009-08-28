@@ -92,12 +92,7 @@ SKIP: {
             return $mock_obj;
     } );
 
-    TODO: {
-        local $TODO = 'Pages not implemented yet';
-        #'Testing with page as hash only'  => { page => 2                },
-        #'Testing with page only'          => 3,
-        $fml->last(3);
-        $fml->last( { page => 3 } );
-    }
+    $fml->last(3);
+    $fml->last( { page => 3 } );
 }
 

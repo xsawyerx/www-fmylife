@@ -56,10 +56,13 @@ sub credentials {
 
 sub last {
     my ( $self, $opts ) = @_;
-    my ( $as, $page );
+    my ( $as,   $page );
+
     if ( ref $opts eq 'HASH' ) {
         $as   = $opts->{'as'};
         $page = $opts->{'page'};
+    } else {
+        $page = $opts;
     }
 
     $as   ||= 'object';
@@ -72,7 +75,7 @@ sub last {
     );
 
     my $res = $self->agent->post(
-        $self->api_url . '/view/last', {
+        $self->api_url . "/view/last/$page", {
             key      => $self->key,
             language => $self->language,
         },
