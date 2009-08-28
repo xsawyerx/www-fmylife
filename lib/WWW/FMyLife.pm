@@ -56,7 +56,8 @@ sub credentials {
 
 sub last {
     my ( $self, $opts ) = @_;
-    $opts->{'as'} ||= 'object';
+    my $as   = ref $opts eq 'HASH' ? $opts->{'as'}   : 'object';
+    my $page = ref $opts eq 'HASH' ? $opts->{'page'} : 1;
 
     my %types = (
         object => sub { return $self->_parse_items_as_object(@_) },
@@ -95,7 +96,7 @@ sub last {
     $self->pages( $xml->{'pages'} );
 
     # return parsed last quotes
-    my @items = $types{ $opts->{'as'} }->($xml);
+    my @items = $types{$as}->($xml);
 
     return @items;
 }
