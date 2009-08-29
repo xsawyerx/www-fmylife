@@ -7,6 +7,9 @@ WriteMakefile
           'PREREQ_PM' => {
                            'LWP::UserAgent' => 0,
                            'Moose' => '0.86',
+                           'Net::Ping' => 0,
+                           'Test::Deep' => 0,
+                           'Test::MockObject::Extends' => 0,
                            'Test::More' => 0,
                            'XML::Simple' => '2.18'
                          },

@@ -9,6 +9,9 @@ license: perl
 resources:
   license: http://dev.perl.org/licenses/
 build_requires:
+  Net::Ping: 0
+  Test::Deep: 0
+  Test::MockObject::Extends: 0
   Test::More: 0
 requires:
   LWP::UserAgent: 0
