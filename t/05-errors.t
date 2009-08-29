@@ -9,40 +9,53 @@ use WWW::FMyLife;
 use Test::More tests => 12;
 use Test::Deep;
 
-my $fml = WWW::FMyLife->new();
+SKIP: {
+    eval 'use Net::Ping';
+    $@ && skip 'Net::Ping required for this test' => 122;
 
-diag('Removing API URL');
-my $api_url = $fml->api_url;
-$fml->api_url('http://127.0.0.1/cahhaz');
+    my $p = Net::Ping->new('syn', 2);
 
-my $my_error =
-    q{500 Can't connect to 127.0.0.1:80 (connect: Connection refused)};
+    if ( ( ! $p->ping('google.com') ) && ( ! $p->ping('yahoo.com') ) ) {
+        $p->close;
+        skip q{Both Google and Yahoo down? most likely you're offline} => 122;
+    }
 
-ok( ! $fml->last,       'Failing on incorrect API URL' );
-ok(   $fml->error,      'Error flag is up'             );
-ok( ! $fml->fml_errors, 'No FML error flag'            );
+    $p->close;
+    my $fml = WWW::FMyLife->new();
 
-is( $fml->module_error, $my_error, 'General module error' );
+    diag('Removing API URL');
+    my $api_url = $fml->api_url;
+    $fml->api_url('http://127.0.0.1/cahhaz');
 
-diag('Returning API, removing key');
-$fml->api_url($api_url);
-$fml->key('');
-ok( ! $fml->last, 'Making last fail' );
+    my $my_error =
+        q{500 Can't connect to 127.0.0.1:80 (connect: Connection refused)};
 
-cmp_deeply(
-    $fml->fml_errors,
-    [ 'Invalid API key' ],
-    'FML errors: API key missing',
-);
+    ok( ! $fml->last,       'Failing on incorrect API URL' );
+    ok(   $fml->error,      'Error flag is up'             );
+    ok( ! $fml->fml_errors, 'No FML error flag'            );
 
-ok( ! $fml->module_error, 'No module error'  );
-ok(   $fml->error,        'Error flag is up' );
+    is( $fml->module_error, $my_error, 'General module error' );
 
-diag('Setting back key');
-$fml->key('readonly');
+    diag('Returning API, removing key');
+    $fml->api_url($api_url);
+    $fml->key('');
+    ok( ! $fml->last, 'Making last fail' );
 
-ok(   $fml->last,         'last() has no errors' );
-ok( ! $fml->error,        'No error flag'        );
-ok( ! $fml->module_error, 'No module errors'     );
-ok( ! $fml->fml_errors,   'No FML errors'        );
+    cmp_deeply(
+        $fml->fml_errors,
+        [ 'Invalid API key' ],
+        'FML errors: API key missing',
+    );
+
+    ok( ! $fml->module_error, 'No module error'  );
+    ok(   $fml->error,        'Error flag is up' );
+
+    diag('Setting back key');
+    $fml->key('readonly');
+
+    ok(   $fml->last,         'last() has no errors' );
+    ok( ! $fml->error,        'No error flag'        );
+    ok( ! $fml->module_error, 'No module errors'     );
+    ok( ! $fml->fml_errors,   'No FML errors'        );
+}
 

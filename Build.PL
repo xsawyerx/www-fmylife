@@ -11,7 +11,10 @@ my $builder = Module::Build->new(
     ],
     dist_version_from    => 'lib/WWW/FMyLife.pm',
     build_requires   => {
-        'Test::More' => 0,
+        'Net::Ping'                 => 0,
+        'Test::More'                => 0,
+        'Test::Deep'                => 0,
+        'Test::MockObject::Extends' => 0,
     },
     requires             => {
         'Moose'          => 0.86,
