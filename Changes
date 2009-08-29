@@ -1,6 +1,9 @@
 Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
+0.02    28,09,09
+        - Fixing MANIFEST, META.yml files
+
 0.01    28.09.09 w00t!
         - Created the basic skeleton
         - Added a lot of tests

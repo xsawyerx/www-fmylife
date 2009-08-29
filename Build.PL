@@ -24,7 +24,7 @@ my $builder = Module::Build->new(
     recursive_test_files => 1,
     add_to_cleanup       => [ 'WWW-FMyLife-*' ],
     create_makefile_pl   => 'traditional',
-    meta_add             => {
+    meta_merge           => {
         bugtracker => 'http://github.com/xsawyerx/www-fmylife/tree/master',
         keywords   => [ 'fml', 'fmylife' ],
     },

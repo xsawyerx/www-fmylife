@@ -6,7 +6,7 @@ use LWP::UserAgent;
 #use MooseX::Types::URI qw( Uri ); # this doesn't work for some reason
 use WWW::FMyLife::Item;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 has 'username' => ( is => 'rw', isa => 'Str' );
 has 'password' => ( is => 'rw', isa => 'Str' );
@@ -152,7 +152,7 @@ WWW::FMyLife - Obtain FMyLife.com anectodes via API
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 SYNOPSIS
 
