@@ -25,7 +25,9 @@ my $builder = Module::Build->new(
     add_to_cleanup       => [ 'WWW-FMyLife-*' ],
     create_makefile_pl   => 'traditional',
     meta_merge           => {
-        repository => 'http://github.com/xsawyerx/www-fmylife/tree/master',
+        resources => {
+            repository => 'http://github.com/xsawyerx/www-fmylife/tree/master',
+        }
         keywords   => [ 'fml', 'fmylife' ],
     },
     create_readme        => 1,
