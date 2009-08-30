@@ -88,7 +88,7 @@ sub last {
     if ( ! $res->is_success ) {
         $self->error(1);
         $self->module_error( $res->status_line );
-        return undef;
+        return;
     }
 
     my $xml = XMLin( $res->decoded_content );
@@ -99,7 +99,7 @@ sub last {
 
         $self->error(1);
         $self->fml_errors($array_errors);
-        return undef;
+        return;
     }
 
     $self->pages( $xml->{'pages'} );
