@@ -6,7 +6,7 @@ use LWP::UserAgent;
 #use MooseX::Types::URI qw( Uri ); # this doesn't work for some reason
 use WWW::FMyLife::Item;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 has 'username' => ( is => 'rw', isa => 'Str' );
 has 'password' => ( is => 'rw', isa => 'Str' );
@@ -152,7 +152,7 @@ WWW::FMyLife - Obtain FMyLife.com anectodes via API
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =head1 SYNOPSIS
 
@@ -194,12 +194,12 @@ Fetches the last quotes. Can accept a hashref that indicates the formatting:
     # returns an array of WWW::FMyLife::Item objects
     $fml->last();
 
-    # or, more explicitly
-    $fml->last( { as => 'object' } ); # same
-    $fml->last( { as => 'text'   } ); # returns the anecdotes as array
-    $fml->last( { as => 'data'   } ); # returns hashes with the data as array
+    # or more explicitly
+    $fml->last( { as => 'object' } ); # same as above
+    $fml->last( { as => 'text'   } ); # returns an array of text anecdotes
+    $fml->last( { as => 'data'   } ); # returns an array of hashes of anecdotes
 
-You can only specify which page you want:
+You can also specify which page you want:
 
     # return 1st page
     my @last = fml->last();
@@ -231,6 +231,7 @@ Sets credentials for members.
 =head1 AUTHORS
 
 Sawyer X (XSAWYERX), C<< <xsawyerx at cpan.org> >>
+
 Tamir Lousky (TLOUSKY), C<< <tlousky at cpan.org> >>
 
 =head1 BUGS
@@ -273,6 +274,16 @@ L<http://search.cpan.org/dist/WWW-FMyLife/>
 =item * FML (FMyLife)
 
 L<http://www.fmylife.com>
+
+=back
+
+=head1 SEE ALSO
+
+=over 4
+
+=item * L<WWW::VieDeMerde>
+
+Apparently supports more options right now. Mainly for French version but seems to support English as well.
 
 =back
 
