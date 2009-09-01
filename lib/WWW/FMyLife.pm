@@ -55,63 +55,18 @@ sub credentials {
     $self->password ( $pass );
 }
 
-# TODO: refactor this with last()?
 sub top {
     my ( $self, $opts ) = @_;
-    my ( $as,   $page );
 
-    if ( ref $opts eq 'HASH' ) {
-        $as   = $opts->{'as'};
-        $page = $opts->{'page'};
-    } else {
-        $page = $opts;
-    }
-
-    $as   ||= 'object';
-    $page ||= 1;
-
-    my %types = (
-        object => sub { return $self->_parse_items_as_object(@_) },
-        text   => sub { return $self->_parse_items_as_text  (@_) },
-        data   => sub { return $self->_parse_items_as_data  (@_) },
-    );
-
-    my $xml = $self->_fetch_data("/view/top/$page");
-
-    $self->pages( $xml->{'pages'} );
-
-    # return parsed last quotes
-    my @items = $types{$as}->($xml);
+    my @items = $self->_parse_options( $opts, 'top' );
 
     return @items;
 }
 
 sub last {
     my ( $self, $opts ) = @_;
-    my ( $as,   $page );
 
-    if ( ref $opts eq 'HASH' ) {
-        $as   = $opts->{'as'};
-        $page = $opts->{'page'};
-    } else {
-        $page = $opts;
-    }
-
-    $as   ||= 'object';
-    $page ||= 1;
-
-    my %types = (
-        object => sub { return $self->_parse_items_as_object(@_) },
-        text   => sub { return $self->_parse_items_as_text  (@_) },
-        data   => sub { return $self->_parse_items_as_data  (@_) },
-    );
-
-    my $xml = $self->_fetch_data("/view/last/$page");
-
-    $self->pages( $xml->{'pages'} );
-
-    # return parsed last quotes
-    my @items = $types{$as}->($xml);
+    my @items = $self->_parse_options( $opts, 'last' );
 
     return @items;
 }
@@ -123,6 +78,35 @@ sub random {
     my $item = $self->_parse_item_as_object($xml);
 
     return $item;
+}
+
+sub _parse_options {
+    my ( $self, $opts, $add_url ) = @_;
+    my ( $as,   $page );
+
+    if ( ref $opts eq 'HASH' ) {
+        $as   = $opts->{'as'};
+        $page = $opts->{'page'};
+    } else {
+        $page = $opts;
+    }
+
+    $as   ||= 'object';
+    $page ||= 1;
+
+    my %types = (
+        object => sub { return $self->_parse_items_as_object(@_) },
+        text   => sub { return $self->_parse_items_as_text  (@_) },
+        data   => sub { return $self->_parse_items_as_data  (@_) },
+    );
+
+    my $xml = $self->_fetch_data("/view/$add_url/$page");
+
+    $self->pages( $xml->{'pages'} );
+
+    my @items = $types{$as}->($xml);
+
+    return @items;
 }
 
 sub _fetch_data {
