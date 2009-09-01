@@ -110,7 +110,58 @@ sub last {
     return @items;
 }
 
+# TODO: refactor the core of this method with last()
+sub random {
+    my $self = shift;
+
+    my $res = $self->agent->post(
+        $self->api_url . '/view/random', {
+            key      => $self->key,
+            language => $self->language,
+        },
+    );
+
+    $self->error(0);
+    $self->clear_fml_errors;
+    $self->clear_module_error;
+
+    if ( ! $res->is_success ) {
+        $self->error(1);
+        $self->module_error( $res->status_line );
+        return;
+    }
+
+    my $xml = XMLin( $res->decoded_content );
+
+    if ( my $raw_errors = $xml->{'errors'}->{'error'} ) {
+        my $array_errors =
+            ref $raw_errors eq 'ARRAY' ? $raw_errors : [ $raw_errors ];
+
+        $self->error(1);
+        $self->fml_errors($array_errors);
+        return;
+    }
+
+    my $item = $self->_parse_item_as_object($xml);
+    return $item;
+}
+
+sub _parse_item_as_object {
+    # this parses a single item
+    my ( $self, $xml ) = @_;
+
+    my %item_data = %{ $xml->{'items'}{'item'} };
+    my $item      = WWW::FMyLife::Item->new();
+
+    foreach my $attr ( keys %item_data ) {
+        $item->$attr( $item_data{$attr} );
+    }
+
+    return $item;
+}
+
 sub _parse_items_as_object {
+    # this parses multiple items
     my ( $self, $xml ) = @_;
     my @items;
 
