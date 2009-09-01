@@ -15,6 +15,7 @@ has 'language' => ( is => 'rw', isa => 'Str', default => 'en'       );
 has 'token'    => ( is => 'rw', isa => 'Str', default => q{}        );
 has 'key'      => ( is => 'rw', isa => 'Str', default => 'readonly' );
 
+# XXX: is there a point to this? is this wannabe caching?
 has 'pages'    => ( is => 'rw', isa => 'Int' );
 
 has 'api_url'  => (
@@ -74,33 +75,7 @@ sub last {
         data   => sub { return $self->_parse_items_as_data  (@_) },
     );
 
-    my $res = $self->agent->post(
-        $self->api_url . "/view/last/$page", {
-            key      => $self->key,
-            language => $self->language,
-        },
-    );
-
-    $self->error(0);
-    $self->clear_fml_errors;
-    $self->clear_module_error;
-
-    if ( ! $res->is_success ) {
-        $self->error(1);
-        $self->module_error( $res->status_line );
-        return;
-    }
-
-    my $xml = XMLin( $res->decoded_content );
-
-    if ( my $raw_errors = $xml->{'errors'}->{'error'} ) {
-        my $array_errors =
-            ref $raw_errors eq 'ARRAY' ? $raw_errors : [ $raw_errors ];
-
-        $self->error(1);
-        $self->fml_errors($array_errors);
-        return;
-    }
+    my $xml = $self->_fetch_data("/view/last/$page");
 
     $self->pages( $xml->{'pages'} );
 
@@ -110,12 +85,20 @@ sub last {
     return @items;
 }
 
-# TODO: refactor the core of this method with last()
 sub random {
     my $self = shift;
 
+    my $xml  = $self->_fetch_data('/view/random');
+    my $item = $self->_parse_item_as_object($xml);
+
+    return $item;
+}
+
+sub _fetch_data {
+    my ( $self, $add_to_url ) = @_;
+
     my $res = $self->agent->post(
-        $self->api_url . '/view/random', {
+        $self->api_url . $add_to_url, {
             key      => $self->key,
             language => $self->language,
         },
@@ -142,8 +125,7 @@ sub random {
         return;
     }
 
-    my $item = $self->_parse_item_as_object($xml);
-    return $item;
+    return $xml;
 }
 
 sub _parse_item_as_object {
