@@ -55,6 +55,37 @@ sub credentials {
     $self->password ( $pass );
 }
 
+# TODO: refactor this with last()?
+sub top {
+    my ( $self, $opts ) = @_;
+    my ( $as,   $page );
+
+    if ( ref $opts eq 'HASH' ) {
+        $as   = $opts->{'as'};
+        $page = $opts->{'page'};
+    } else {
+        $page = $opts;
+    }
+
+    $as   ||= 'object';
+    $page ||= 1;
+
+    my %types = (
+        object => sub { return $self->_parse_items_as_object(@_) },
+        text   => sub { return $self->_parse_items_as_text  (@_) },
+        data   => sub { return $self->_parse_items_as_data  (@_) },
+    );
+
+    my $xml = $self->_fetch_data("/view/top/$page");
+
+    $self->pages( $xml->{'pages'} );
+
+    # return parsed last quotes
+    my @items = $types{$as}->($xml);
+
+    return @items;
+}
+
 sub last {
     my ( $self, $opts ) = @_;
     my ( $as,   $page );
