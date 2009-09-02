@@ -1,13 +1,22 @@
 Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
-0.03    23.09.09
+0.04    03.09.09
+        - adding top and top variations
+         (top_day, top_week, top_month
+        - adding random
+        - adding tests for them
+        - updating pod and fixing it up
+        - refactored a lot
+        - correcting repository in resources in META.yml
+
+0.03    23.08.09
         - Some POD changes (also including link to WWW::VieDeMerde)
 
-0.02    28.09.09
+0.02    28.08.09
         - Fixing MANIFEST, META.yml files
 
-0.01    28.09.09 w00t!
+0.01    28.08.09 w00t!
         - Created the basic skeleton
         - Added a lot of tests
         - Currently supports last()
