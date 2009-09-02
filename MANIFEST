@@ -22,3 +22,8 @@ t/minimumversion.t
 t/pod-coverage.t
 t/pod.t
 t/view/01-last.t
+t/view/02-random.t
+t/view/03-top.t
+t/view/04-top_day.t
+t/view/05-top_week.t
+t/view/06-top_month.t
