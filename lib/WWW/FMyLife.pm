@@ -57,26 +57,20 @@ sub credentials {
 
 sub top {
     my ( $self, $opts ) = @_;
-
     my @items = $self->_parse_options( $opts, 'top' );
-
     return @items;
 }
 
 sub last {
     my ( $self, $opts ) = @_;
-
     my @items = $self->_parse_options( $opts, 'last' );
-
     return @items;
 }
 
 sub random {
     my $self = shift;
-
     my $xml  = $self->_fetch_data('/view/random');
     my $item = $self->_parse_item_as_object($xml);
-
     return $item;
 }
 
