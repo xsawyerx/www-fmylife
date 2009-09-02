@@ -13,10 +13,30 @@ General TODO stuff:
 - helper functions
 - once stable, submit to FML API applications
 
-0.04:
-    - finish /top
-    - proper docs
+0.05:
+    - fix URI
+
+0.06:
+    - implement flop
+
+0.07:
+    - categories
+
+0.08:
+    - specific numbers
+
+0.09:
+    - searches?
 
 0.10:
+    - credentials
+    - members' categories, new, favorites
     - finish /view
+    - decide what to do with pages() attribute
 
+0.20:
+    - decide on XML::Twig vs. XML::Simple
+    - note differences with VieDeMerde on POD
+
+0.30:
+    - decide what to do with comments
