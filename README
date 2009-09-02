@@ -2,38 +2,33 @@ NAME
     WWW::FMyLife - Obtain FMyLife.com anectodes via API
 
 VERSION
-    Version 0.03
+    Version 0.04
 
 SYNOPSIS
     THIS MODULE IS STILL UNDER INITIAL DEVELOPMENT! BE WARNED!
 
     This module fetches FMyLife.com (FML) anecdotes, comments, votes and
-    more via API, comfortably.
+    more via API, comfortably and in an extensible manner.
 
         use WWW::FMyLife;
 
-        my $fml    = WWW::FMyLife->new();
-        print map { "Items: $_\n" } $fml->last();
+        my $fml = WWW::FMyLife->new();
+        print map { "Items: $_\n" } $fml->last( { as => text' } );
 
-        my @items = $fml->last();
+        my @items = $fml->top_daily();
         foreach my $item (@items) {
             my $item_id      = $item->id;
             my $item_content = $item->content;
             print "[$item_id] $item_content\n";
         }
 
-        my @text_items = $fml->last( { as => 'text' } );
-        print "Items:\n", join "\n", @text_items;
+        print $fml->random()->text, "\n";
         ...
 
 EXPORT
     This module exports nothing.
 
 METHODS
-  Working
-    Right now the only thing working and tested properly is the last()
-    method
-
   last()
     Fetches the last quotes. Can accept a hashref that indicates the
     formatting:
@@ -60,6 +55,34 @@ METHODS
     And options can be mixed:
 
         my @not_so_last = $fml->last( { as => 'text', page => 50 } );
+
+  random
+    This method gets a single random quote as an object.
+
+  top
+    This method works the same as the last() method, only it fetches the top
+    quotes.
+
+    This method, as for its variations, can format as an object, text or
+    data.
+
+  top_day
+    This method works the same as the last() method, only it fetches the top
+    quotes.
+
+    This specific variant fetches the top anecdotes from the last day.
+
+  top_week
+    This method works the same as the last() method, only it fetches the top
+    quotes.
+
+    This specific variant fetches the top anecdotes from the last week.
+
+  top_month
+    This method works the same as the last() method, only it fetches the top
+    quotes.
+
+    This specific variant fetches the top anecdotes from the last month.
 
   credentials( $username, $password ) (NOT YET FULLY IMPLEMENTED)
     WARNING: THIS HAS NOT YET BEEN IMPLEMENTED.
