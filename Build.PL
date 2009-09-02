@@ -27,7 +27,7 @@ my $builder = Module::Build->new(
     meta_merge           => {
         resources => {
             repository => 'http://github.com/xsawyerx/www-fmylife/tree/master',
-        }
+        },
         keywords   => [ 'fml', 'fmylife' ],
     },
     create_readme        => 1,
