@@ -218,7 +218,7 @@ Version 0.04
 
 THIS MODULE IS STILL UNDER INITIAL DEVELOPMENT! BE WARNED!
 
-This module fetches FMyLife.com (FML) anecdotes, comments, votes and more via API, comfortably and extensibly.
+This module fetches FMyLife.com (FML) anecdotes, comments, votes and more via API, comfortably and in an extensible manner.
 
     use WWW::FMyLife;
 
