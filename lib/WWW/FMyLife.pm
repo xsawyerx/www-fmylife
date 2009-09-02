@@ -6,7 +6,7 @@ use LWP::UserAgent;
 #use MooseX::Types::URI qw( Uri ); # this doesn't work for some reason
 use WWW::FMyLife::Item;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 has 'username' => ( is => 'rw', isa => 'Str' );
 has 'password' => ( is => 'rw', isa => 'Str' );
@@ -56,6 +56,24 @@ sub credentials {
 }
 
 sub top {
+    my ( $self, $opts ) = @_;
+    my @items = $self->_parse_options( $opts, 'top' );
+    return @items;
+}
+
+sub top_day {
+    my ( $self, $opts ) = @_;
+    my @items = $self->_parse_options( $opts, 'top' );
+    return @items;
+}
+
+sub top_week {
+    my ( $self, $opts ) = @_;
+    my @items = $self->_parse_options( $opts, 'top' );
+    return @items;
+}
+
+sub top_month {
     my ( $self, $opts ) = @_;
     my @items = $self->_parse_options( $opts, 'top' );
     return @items;
@@ -194,40 +212,34 @@ WWW::FMyLife - Obtain FMyLife.com anectodes via API
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =head1 SYNOPSIS
 
 THIS MODULE IS STILL UNDER INITIAL DEVELOPMENT! BE WARNED!
 
-This module fetches FMyLife.com (FML) anecdotes, comments, votes and more via API, comfortably.
+This module fetches FMyLife.com (FML) anecdotes, comments, votes and more via API, comfortably and extensibly.
 
     use WWW::FMyLife;
 
-    my $fml    = WWW::FMyLife->new();
-    print map { "Items: $_\n" } $fml->last();
+    my $fml = WWW::FMyLife->new();
+    print map { "Items: $_\n" } $fml->last( { as => text' } );
 
-    my @items = $fml->last();
+    my @items = $fml->top_daily();
     foreach my $item (@items) {
         my $item_id      = $item->id;
         my $item_content = $item->content;
         print "[$item_id] $item_content\n";
     }
 
-    my @text_items = $fml->last( { as => 'text' } );
-    print "Items:\n", join "\n", @text_items;
+    print $fml->random()->text, "\n";
     ...
-
 
 =head1 EXPORT
 
 This module exports nothing.
 
 =head1 METHODS
-
-=head2 Working
-
-Right now the only thing working and tested properly is the last() method
 
 =head2 last()
 
@@ -255,6 +267,34 @@ You can also specify which page you want:
 And options can be mixed:
 
     my @not_so_last = $fml->last( { as => 'text', page => 50 } );
+
+=head2 random
+
+This method gets a single random quote as an object.
+
+=head2 top
+
+This method works the same as the last() method, only it fetches the top quotes.
+
+This method, as for its variations, can format as an object, text or data.
+
+=head2 top_day
+
+This method works the same as the last() method, only it fetches the top quotes.
+
+This specific variant fetches the top anecdotes from the last day.
+
+=head2 top_week
+
+This method works the same as the last() method, only it fetches the top quotes.
+
+This specific variant fetches the top anecdotes from the last week.
+
+=head2 top_month
+
+This method works the same as the last() method, only it fetches the top quotes.
+
+This specific variant fetches the top anecdotes from the last month.
 
 =head2 credentials( $username, $password ) (NOT YET FULLY IMPLEMENTED)
 
