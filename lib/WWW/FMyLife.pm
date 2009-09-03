@@ -114,6 +114,8 @@ sub _parse_options {
 
     my $xml = $self->_fetch_data("/view/$add_url/$page");
 
+    $xml || return;
+
     $self->pages( $xml->{'pages'} );
 
     my @items = $types{$as}->($xml);
