@@ -25,7 +25,7 @@ SKIP: {
 
     diag('Removing API URL');
     my $api_url = $fml->api_url;
-    $fml->api_url('http://127.0.0.1/cahhaz');
+    $fml->api_url('http://127.0.0.1/free/the/animals');
 
     my $my_error =
         q{500 Can't connect to 127.0.0.1:80 (connect: Connection refused)};
