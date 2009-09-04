@@ -2,18 +2,13 @@ list of stuff that needs be done, hopefully organized by stable releases:
 (this is just a quick roadmap, so much of this might change)
 
 General TODO stuff:
-- use URI type constraint on api_url attribute
-- use File::Spec for paths
-- Moose meta make immutable
+- Test::Able ?
 - finish minimum test coverage
 - cover main methods
 - increase test coverage (Devel::Cover can help)
 - try to get to 100% support of API
 - helper functions
 - once stable, submit to FML API applications
-
-0.05:
-    - fix URI
 
 0.06:
     - implement flop

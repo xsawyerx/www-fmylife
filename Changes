@@ -1,6 +1,9 @@
 Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
+0.05    04.09.09
+        - made immutable
+
 0.04    03.09.09
         - adding top and top variations
          (top_day, top_week, top_month
