@@ -3,7 +3,6 @@ package WWW::FMyLife;
 use Moose;
 use XML::Simple;
 use LWP::UserAgent;
-#use MooseX::Types::URI qw( Uri ); # this doesn't work for some reason
 use WWW::FMyLife::Item;
 
 our $VERSION = '0.04';
@@ -20,7 +19,7 @@ has 'pages'    => ( is => 'rw', isa => 'Int' );
 
 has 'api_url'  => (
     is      => 'rw',
-    isa     => 'Str', # suppose to be 'Uri' but doesn't work for some reason
+    isa     => 'Str',
     default => 'http://api.betacie.com',
 );
 
