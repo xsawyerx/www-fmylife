@@ -3,7 +3,7 @@ package WWW::FMyLife::Item;
 use Moose;
 use Moose::Util::TypeConstraints;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 subtype 'FMLAuthor'
     => as 'HashRef'
@@ -19,6 +19,9 @@ has 'agree'         => ( is => 'rw', isa => 'Int'       );
 has 'comments'      => ( is => 'rw', isa => 'Int'       );
 has 'comments_flag' => ( is => 'rw', isa => 'Bool'      );
 
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
 1;
 
 __END__
@@ -29,7 +32,7 @@ WWW::FMyLife::Item - Represents a single FMyLife.com Item
 
 =head1 VERSION
 
-Version 0.01
+Version 0.02
 
 =head1 SYNOPSIS
 
