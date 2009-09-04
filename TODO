@@ -6,7 +6,6 @@ General TODO stuff:
 - use File::Spec for paths
 - Moose meta make immutable
 - finish minimum test coverage
-- add tests for top (with the option to get page number)
 - cover main methods
 - increase test coverage (Devel::Cover can help)
 - try to get to 100% support of API
