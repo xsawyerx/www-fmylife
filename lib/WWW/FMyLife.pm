@@ -204,6 +204,9 @@ sub _parse_items_as_data {
     return @items;
 }
 
+no Moose;
+__PACKAGE__->meta->make_immutable;
+
 1;
 
 __END__
