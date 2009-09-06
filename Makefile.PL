@@ -5,12 +5,12 @@ WriteMakefile
           'NAME' => 'WWW::FMyLife',
           'VERSION_FROM' => 'lib/WWW/FMyLife.pm',
           'PREREQ_PM' => {
-                           'LWP::UserAgent' => 0,
+                           'LWP::UserAgent' => '0',
                            'Moose' => '0.86',
-                           'Net::Ping' => 0,
-                           'Test::Deep' => 0,
-                           'Test::MockObject::Extends' => 0,
-                           'Test::More' => 0,
+                           'Net::Ping' => '0',
+                           'Test::Deep' => '0',
+                           'Test::MockObject::Extends' => '0',
+                           'Test::More' => '0',
                            'XML::Simple' => '2.18'
                          },
           'INSTALLDIRS' => 'site',
