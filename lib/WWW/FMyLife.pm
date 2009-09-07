@@ -5,7 +5,7 @@ use XML::Simple;
 use LWP::UserAgent;
 use WWW::FMyLife::Item;
 
-our $VERSION = '0.05';
+our $VERSION = '0.06';
 
 has 'username' => ( is => 'rw', isa => 'Str' );
 has 'password' => ( is => 'rw', isa => 'Str' );
@@ -52,6 +52,8 @@ sub credentials {
     my ( $self, $user, $pass ) = @_;
     $self->username ( $user );
     $self->password ( $pass );
+
+    return;
 }
 
 sub top {
@@ -96,8 +98,8 @@ sub _parse_options {
     my ( $as,   $page );
 
     if ( ref $opts eq 'HASH' ) {
-        $as   = $opts->{'as'};
-        $page = $opts->{'page'};
+        $as   = $opts->{'as'};   ## no critic (ProhibitAccessOfPrivateData)
+        $page = $opts->{'page'}; ## no critic (ProhibitAccessOfPrivateData)
     } else {
         $page = $opts;
     }
@@ -115,7 +117,7 @@ sub _parse_options {
 
     $xml || return;
 
-    $self->pages( $xml->{'pages'} );
+    $self->pages( $xml->{'pages'} ); ## no critic (ProhibitAccessOfPrivateData)
 
     my @items = $types{$as}->($xml);
 
@@ -144,7 +146,7 @@ sub _fetch_data {
 
     my $xml = XMLin( $res->decoded_content );
 
-    if ( my $raw_errors = $xml->{'errors'}->{'error'} ) {
+    if ( my $raw_errors = $xml->{'errors'}->{'error'} ) { ## no critic (ProhibitAccessOfPrivateData)
         my $array_errors =
             ref $raw_errors eq 'ARRAY' ? $raw_errors : [ $raw_errors ];
 
@@ -160,7 +162,7 @@ sub _parse_item_as_object {
     # this parses a single item
     my ( $self, $xml ) = @_;
 
-    my %item_data = %{ $xml->{'items'}{'item'} };
+    my %item_data = %{ $xml->{'items'}{'item'} }; ## no critic (ProhibitAccessOfPrivateData)
     my $item      = WWW::FMyLife::Item->new();
 
     foreach my $attr ( keys %item_data ) {
@@ -175,13 +177,13 @@ sub _parse_items_as_object {
     my ( $self, $xml ) = @_;
     my @items;
 
-    while ( my ( $id, $item_data ) = each %{ $xml->{'items'}{'item'} } ) {
+    while ( my ( $id, $item_data ) = each %{ $xml->{'items'}{'item'} } ) { ## no critic (ProhibitAccessOfPrivateData)
         my $item = WWW::FMyLife::Item->new(
             id => $id,
         );
 
         foreach my $attr ( keys %{$item_data} ) {
-            $item->$attr( $item_data->{$attr} );
+            $item->$attr( $item_data->{$attr} ); ## no critic (ProhibitAccessOfPrivateData)
         }
 
         push @items, $item;
@@ -192,14 +194,14 @@ sub _parse_items_as_object {
 
 sub _parse_items_as_text {
     my ( $self, $xml ) = @_;
-    my @items = map { $_->{'text'} } values %{ $xml->{'items'}{'item'} };
+    my @items = map { $_->{'text'} } values %{ $xml->{'items'}{'item'} }; ## no critic (ProhibitAccessOfPrivateData)
     return @items;
 }
 
 sub _parse_items_as_data {
     my ( $self, $xml ) = @_;
-    my $itemsref       = $xml->{'items'}{'item'};
-    my @items          = map +{ $_ => $itemsref->{$_} }, keys %{$itemsref};
+    my $itemsref       = $xml->{'items'}{'item'}; ## no critic (ProhibitAccessOfPrivateData)
+    my @items          = map +{ $_ => $itemsref->{$_} }, keys %{$itemsref}; ## no critic (ProhibitAccessOfPrivateData)
     return @items;
 }
 
@@ -212,11 +214,11 @@ __END__
 
 =head1 NAME
 
-WWW::FMyLife - Obtain FMyLife.com anectodes via API
+WWW::FMyLife - Obtain FMyLife.com anecdotes via API
 
 =head1 VERSION
 
-Version 0.05
+Version 0.06
 
 =head1 SYNOPSIS
 
@@ -314,7 +316,7 @@ Sets credentials for members.
     $fml->username('foo');
     $fml->password('bar');
 
-=head1 AUTHORS
+=head1 AUTHOR
 
 Sawyer X (XSAWYERX), C<< <xsawyerx at cpan.org> >>
 

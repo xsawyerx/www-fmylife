@@ -1,6 +1,11 @@
 Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
+0.06    07.09.09
+        - added no critic for weird critic fails
+        - changed AUTHORS section to AUTHOR (critic)
+        - fixed spelling error
+
 0.05    04.09.09
         - made immutable
 
