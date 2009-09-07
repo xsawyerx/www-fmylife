@@ -1,10 +1,10 @@
 ---
 name: WWW-FMyLife
-version: 0.05
+version: 0.06
 author:
   - 'Sawyer X <xsawyerx@cpan.org>'
   - 'Tamir Lousky <tlousky@cpan.org>'
-abstract: Obtain FMyLife.com anectodes via API
+abstract: Obtain FMyLife.com anecdotes via API
 license: perl
 resources:
   license: http://dev.perl.org/licenses/
@@ -23,7 +23,7 @@ configure_requires:
 provides:
   WWW::FMyLife:
     file: lib/WWW/FMyLife.pm
-    version: 0.05
+    version: 0.06
   WWW::FMyLife::Comment:
     file: lib/WWW/FMyLife/Comment.pm
     version: 0.02

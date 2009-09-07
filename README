@@ -1,8 +1,8 @@
 NAME
-    WWW::FMyLife - Obtain FMyLife.com anectodes via API
+    WWW::FMyLife - Obtain FMyLife.com anecdotes via API
 
 VERSION
-    Version 0.05
+    Version 0.06
 
 SYNOPSIS
     THIS MODULE IS STILL UNDER INITIAL DEVELOPMENT! BE WARNED!
@@ -98,7 +98,7 @@ METHODS
         $fml->username('foo');
         $fml->password('bar');
 
-AUTHORS
+AUTHOR
     Sawyer X (XSAWYERX), "<xsawyerx at cpan.org>"
 
     Tamir Lousky (TLOUSKY), "<tlousky at cpan.org>"
