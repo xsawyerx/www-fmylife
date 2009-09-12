@@ -2,8 +2,6 @@ Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
 0.07    14.09.09
-        - removed no critic lines
-        - critic.t doesn't run on AUTOMATED_TESTING anymore
         - fixed bug in test
         - fixed bug in top day/week/month
         - added flop and flop day/week/month + tests
