@@ -1,6 +1,6 @@
 ---
 name: WWW-FMyLife
-version: 0.06
+version: 0.07
 author:
   - 'Sawyer X <xsawyerx@cpan.org>'
   - 'Tamir Lousky <tlousky@cpan.org>'
@@ -13,7 +13,7 @@ build_requires:
   Net::Ping: 0
   Test::Deep: 0
   Test::MockObject::Extends: 0
-  Test::More: 0
+  Test::More: 0.88
 requires:
   LWP::UserAgent: 0
   Moose: 0.86
@@ -23,7 +23,7 @@ configure_requires:
 provides:
   WWW::FMyLife:
     file: lib/WWW/FMyLife.pm
-    version: 0.06
+    version: 0.07
   WWW::FMyLife::Comment:
     file: lib/WWW/FMyLife/Comment.pm
     version: 0.02
