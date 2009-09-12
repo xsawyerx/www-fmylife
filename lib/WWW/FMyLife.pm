@@ -129,7 +129,7 @@ sub _parse_options {
     }
 
     $as   ||= 'object';
-    $page ||= 1;
+    $page ||= q{};
 
     my %types = (
         object => sub { return $self->_parse_items_as_object(@_) },
