@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use WWW::FMyLife;
 
-use Test::More tests => 64;
+use Test::More tests => 60;
 
 SKIP: {
     eval 'use Net::Ping';
@@ -24,7 +24,6 @@ SKIP: {
     my $fml     = WWW::FMyLife->new();
     my @top_day = $fml->top_day();
 
-    cmp_ok( scalar @top_day, '==', 15, 'Got top_day 15 items' );
     foreach my $top (@top_day) {
         isa_ok( $top, 'WWW::FMyLife::Item', 'Item is an object' );
     }
@@ -62,7 +61,6 @@ SKIP: {
 
     while ( my ( $format, $type_check ) = each %format_types ) {
         @top_day = $fml->top_day( { as => $format } );
-        cmp_ok( scalar @top_day, '==', 15, 'Got top 15 items' );
 
         foreach my $top (@top_day) {
             $type_check->($top);
