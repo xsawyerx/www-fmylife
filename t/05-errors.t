@@ -11,13 +11,13 @@ use Test::Deep;
 
 SKIP: {
     eval 'use Net::Ping';
-    $@ && skip 'Net::Ping required for this test' => 122;
+    $@ && skip 'Net::Ping required for this test' => 12;
 
     my $p = Net::Ping->new('syn', 2);
 
     if ( ( ! $p->ping('google.com') ) && ( ! $p->ping('yahoo.com') ) ) {
         $p->close;
-        skip q{Both Google and Yahoo down? most likely you're offline} => 122;
+        skip q{Both Google and Yahoo down? most likely you're offline} => 12;
     }
 
     $p->close;
