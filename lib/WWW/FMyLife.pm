@@ -248,12 +248,14 @@ Version 0.07
 
 THIS MODULE IS STILL UNDER INITIAL DEVELOPMENT! BE WARNED!
 
-This module fetches FMyLife.com (FML) anecdotes, comments, votes and more via API, comfortably and in an extensible manner.
-
     use WWW::FMyLife;
 
     my $fml = WWW::FMyLife->new();
     print map { "Items: $_\n" } $fml->last( { as => text' } );
+
+=head1 DESCRIPTION
+
+This module fetches FMyLife.com (FML) anecdotes, comments, votes and more via API, comfortably and in an extensible manner.
 
     my @items = $fml->top_daily();
     foreach my $item (@items) {
@@ -269,7 +271,7 @@ This module fetches FMyLife.com (FML) anecdotes, comments, votes and more via AP
 
 This module exports nothing.
 
-=head1 METHODS
+=head1 SUBROUTINES/METHODS
 
 =head2 last()
 
@@ -364,7 +366,15 @@ Sawyer X (XSAWYERX), C<< <xsawyerx at cpan.org> >>
 
 Tamir Lousky (TLOUSKY), C<< <tlousky at cpan.org> >>
 
-=head1 BUGS
+=head1 DEPENDENCIES
+
+L<Moose>
+
+L<XML::Simple>
+
+L<LWP::UserAgent>
+
+=head1 BUGS AND LIMITATIONS
 
 Please report any bugs or feature requests to C<bug-www-fmylife at rt.cpan.org>, or through
 the web interface at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=WWW-FMyLife>.
@@ -417,7 +427,7 @@ Apparently supports more options right now. Mainly for French version but seems 
 
 =back
 
-=head1 COPYRIGHT & LICENSE
+=head1 LICENSE AND COPYRIGHT
 
 Copyright 2009 Sawyer X, Tamir Lousky.
 
