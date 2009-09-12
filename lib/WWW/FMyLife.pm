@@ -64,19 +64,43 @@ sub top {
 
 sub top_day {
     my ( $self, $opts ) = @_;
-    my @items = $self->_parse_options( $opts, 'top' );
+    my @items = $self->_parse_options( $opts, 'top_day' );
     return @items;
 }
 
 sub top_week {
     my ( $self, $opts ) = @_;
-    my @items = $self->_parse_options( $opts, 'top' );
+    my @items = $self->_parse_options( $opts, 'top_week' );
     return @items;
 }
 
 sub top_month {
     my ( $self, $opts ) = @_;
-    my @items = $self->_parse_options( $opts, 'top' );
+    my @items = $self->_parse_options( $opts, 'top_month' );
+    return @items;
+}
+
+sub flop {
+    my ( $self, $opts ) = @_;
+    my @items = $self->_parse_options( $opts, 'flop' );
+    return @items;
+}
+
+sub flop_day {
+    my ( $self, $opts ) = @_;
+    my @items = $self->_parse_options( $opts, 'flop_day' );
+    return @items;
+}
+
+sub flop_week {
+    my ( $self, $opts ) = @_;
+    my @items = $self->_parse_options( $opts, 'flop_week' );
+    return @items;
+}
+
+sub flop_month {
+    my ( $self, $opts ) = @_;
+    my @items = $self->_parse_options( $opts, 'flop_month' );
     return @items;
 }
 
