@@ -7,17 +7,18 @@ use strict;
 use warnings;
 use WWW::FMyLife;
 
-use Test::More tests => 60;
+use Test::More;
 
 SKIP: {
     eval 'use Net::Ping';
-    $@ && skip 'Net::Ping required for this test' => 64;
+    $@ && plan skip_all => 'Net::Ping required for this test';
 
     my $p = Net::Ping->new('syn', 2);
 
     if ( ( ! $p->ping('google.com') ) && ( ! $p->ping('yahoo.com') ) ) {
         $p->close;
-        skip q{Both Google and Yahoo down? most likely you're offline} => 122;
+        plan skip_all =>
+            q{Both Google and Yahoo down? most likely you're offline};
     }
 
     $p->close;
@@ -68,3 +69,4 @@ SKIP: {
     }
 }
 
+done_testing();
