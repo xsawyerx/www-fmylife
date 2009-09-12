@@ -122,8 +122,8 @@ sub _parse_options {
     my ( $as,   $page );
 
     if ( ref $opts eq 'HASH' ) {
-        $as   = $opts->{'as'};   ## no critic (ProhibitAccessOfPrivateData)
-        $page = $opts->{'page'}; ## no critic (ProhibitAccessOfPrivateData)
+        $as   = $opts->{'as'};
+        $page = $opts->{'page'};
     } else {
         $page = $opts;
     }
@@ -141,7 +141,7 @@ sub _parse_options {
 
     $xml || return;
 
-    $self->pages( $xml->{'pages'} ); ## no critic (ProhibitAccessOfPrivateData)
+    $self->pages( $xml->{'pages'} );
 
     my @items = $types{$as}->($xml);
 
@@ -170,7 +170,7 @@ sub _fetch_data {
 
     my $xml = XMLin( $res->decoded_content );
 
-    if ( my $raw_errors = $xml->{'errors'}->{'error'} ) { ## no critic (ProhibitAccessOfPrivateData)
+    if ( my $raw_errors = $xml->{'errors'}->{'error'} ) {
         my $array_errors =
             ref $raw_errors eq 'ARRAY' ? $raw_errors : [ $raw_errors ];
 
@@ -186,7 +186,7 @@ sub _parse_item_as_object {
     # this parses a single item
     my ( $self, $xml ) = @_;
 
-    my %item_data = %{ $xml->{'items'}{'item'} }; ## no critic (ProhibitAccessOfPrivateData)
+    my %item_data = %{ $xml->{'items'}{'item'} };
     my $item      = WWW::FMyLife::Item->new();
 
     foreach my $attr ( keys %item_data ) {
@@ -201,13 +201,13 @@ sub _parse_items_as_object {
     my ( $self, $xml ) = @_;
     my @items;
 
-    while ( my ( $id, $item_data ) = each %{ $xml->{'items'}{'item'} } ) { ## no critic (ProhibitAccessOfPrivateData)
+    while ( my ( $id, $item_data ) = each %{ $xml->{'items'}{'item'} } ) {
         my $item = WWW::FMyLife::Item->new(
             id => $id,
         );
 
         foreach my $attr ( keys %{$item_data} ) {
-            $item->$attr( $item_data->{$attr} ); ## no critic (ProhibitAccessOfPrivateData)
+            $item->$attr( $item_data->{$attr} );
         }
 
         push @items, $item;
@@ -218,14 +218,14 @@ sub _parse_items_as_object {
 
 sub _parse_items_as_text {
     my ( $self, $xml ) = @_;
-    my @items = map { $_->{'text'} } values %{ $xml->{'items'}{'item'} }; ## no critic (ProhibitAccessOfPrivateData)
+    my @items = map { $_->{'text'} } values %{ $xml->{'items'}{'item'} };
     return @items;
 }
 
 sub _parse_items_as_data {
     my ( $self, $xml ) = @_;
-    my $itemsref       = $xml->{'items'}{'item'}; ## no critic (ProhibitAccessOfPrivateData)
-    my @items          = map +{ $_ => $itemsref->{$_} }, keys %{$itemsref}; ## no critic (ProhibitAccessOfPrivateData)
+    my $itemsref       = $xml->{'items'}{'item'};
+    my @items          = map +{ $_ => $itemsref->{$_} }, keys %{$itemsref};
     return @items;
 }
 
