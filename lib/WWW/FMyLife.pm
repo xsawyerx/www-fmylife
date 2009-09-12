@@ -326,6 +326,24 @@ This method works the same as the last() method, only it fetches the top quotes.
 
 This specific variant fetches the top anecdotes from the last month.
 
+=head2 flop
+
+Fetches the flop quotes.
+
+This method, as for its variations, can format as an object, text or data.
+
+=head2 flop_day
+
+Fetches the flop quotes of the day.
+
+=head2 flop_week
+
+Fetches the flop quotes of the week.
+
+=head2 flop_month
+
+Fetches the flop quotes of the month.
+
 =head2 credentials( $username, $password ) (NOT YET FULLY IMPLEMENTED)
 
 WARNING: THIS HAS NOT YET BEEN IMPLEMENTED.
