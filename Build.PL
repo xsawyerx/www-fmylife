@@ -12,7 +12,7 @@ my $builder = Module::Build->new(
     dist_version_from    => 'lib/WWW/FMyLife.pm',
     build_requires   => {
         'Net::Ping'                 => 0,
-        'Test::More'                => 0,
+        'Test::More'                => 0.88,
         'Test::Deep'                => 0,
         'Test::MockObject::Extends' => 0,
     },
