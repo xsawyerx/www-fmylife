@@ -1,6 +1,10 @@
 Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
+0.07    14.09.09
+        - removed no critic lines
+        - critic.t doesn't run on AUTOMATED_TESTING anymore
+
 0.06    07.09.09
         - added no critic for weird critic fails
         - changed AUTHORS section to AUTHOR (critic)

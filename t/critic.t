@@ -14,7 +14,7 @@ my @MODULES = (
 
 # Don't run tests during end-user installs
 use Test::More;
-unless ( $ENV{AUTOMATED_TESTING} or $ENV{RELEASE_TESTING} ) {
+unless ( $ENV{RELEASE_TESTING} ) {
 	plan( skip_all => "Author tests not required for installation" );
 }
 
