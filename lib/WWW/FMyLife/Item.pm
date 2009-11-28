@@ -3,7 +3,7 @@ package WWW::FMyLife::Item;
 use Moose;
 use Moose::Util::TypeConstraints;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 subtype 'FMLAuthor'
     => as 'HashRef'
@@ -14,6 +14,7 @@ has 'author'        => ( is => 'rw', isa => 'FMLAuthor' );
 has 'date'          => ( is => 'rw', isa => 'Str'       );
 has 'category'      => ( is => 'rw', isa => 'Str'       );
 has 'text'          => ( is => 'rw', isa => 'Str'       );
+has 'vote'          => ( is => 'rw', isa => 'Str'       );
 has 'deserved'      => ( is => 'rw', isa => 'Int'       );
 has 'agree'         => ( is => 'rw', isa => 'Int'       );
 has 'comments'      => ( is => 'rw', isa => 'Int'       );
@@ -32,7 +33,7 @@ WWW::FMyLife::Item - Represents a single FMyLife.com Item
 
 =head1 VERSION
 
-Version 0.02
+Version 0.03
 
 =head1 SYNOPSIS
 
