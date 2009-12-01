@@ -3,18 +3,26 @@ package WWW::FMyLife::Item;
 use Moose;
 use Moose::Util::TypeConstraints;
 
-our $VERSION = '0.03';
+our $VERSION = '0.04';
 
 subtype 'FMLAuthor'
     => as 'HashRef'
     => where { exists shift->{'content'} };
+
+subtype 'FMLVote'
+    => as 'HashRef'
+    => where {
+        my $ref = shift;
+        ( exists $ref->{'deserved'}     && exists $ref->{'agree'}     ) &&
+        ( $ref->{'deserved'} =~ /^\d+$/ && $ref->{'agree'} =~ /^\d+$/ )
+    };
 
 has 'id'            => ( is => 'rw', isa => 'Int'       );
 has 'author'        => ( is => 'rw', isa => 'FMLAuthor' );
 has 'date'          => ( is => 'rw', isa => 'Str'       );
 has 'category'      => ( is => 'rw', isa => 'Str'       );
 has 'text'          => ( is => 'rw', isa => 'Str'       );
-has 'vote'          => ( is => 'rw', isa => 'Str'       );
+has 'vote'          => ( is => 'rw', isa => 'HashRef'   );
 has 'deserved'      => ( is => 'rw', isa => 'Int'       );
 has 'agree'         => ( is => 'rw', isa => 'Int'       );
 has 'comments'      => ( is => 'rw', isa => 'Int'       );
@@ -33,7 +41,7 @@ WWW::FMyLife::Item - Represents a single FMyLife.com Item
 
 =head1 VERSION
 
-Version 0.03
+Version 0.04
 
 =head1 SYNOPSIS
 
