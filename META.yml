@@ -1,6 +1,6 @@
 ---
 name: WWW-FMyLife
-version: 0.07
+version: 0.08
 author:
   - 'Sawyer X <xsawyerx@cpan.org>'
   - 'Tamir Lousky <tlousky@cpan.org>'
@@ -23,13 +23,13 @@ configure_requires:
 provides:
   WWW::FMyLife:
     file: lib/WWW/FMyLife.pm
-    version: 0.07
+    version: 0.08
   WWW::FMyLife::Comment:
     file: lib/WWW/FMyLife/Comment.pm
     version: 0.02
   WWW::FMyLife::Item:
     file: lib/WWW/FMyLife/Item.pm
-    version: 0.02
+    version: 0.04
   WWW::FMyLife::Vote:
     file: lib/WWW/FMyLife/Vote.pm
     version: 0.02
