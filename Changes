@@ -1,6 +1,10 @@
 Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
+0.09    05.12.09
+        - fixed erred test to check for a general error
+        - skip item if it's not defined in view/04-top_day.t
+
 0.08    02.12.09
         - added "vote" attribute to Item
           (hopefully that will fix the failing tests)
