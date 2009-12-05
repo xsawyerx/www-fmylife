@@ -28,13 +28,13 @@ SKIP: {
     $fml->api_url('http://127.0.0.1:7656/free/the/animals');
 
     my $my_error =
-        q{500 Can't connect to 127.0.0.1:7656 (connect: Connection refused)};
+        qr/500 Can't connect to 127\.0\.0\.1\:7656/;
 
     ok( ! $fml->last,       'Failing on incorrect API URL' );
     ok(   $fml->error,      'Error flag is up'             );
     ok( ! $fml->fml_errors, 'No FML error flag'            );
 
-    is( $fml->module_error, $my_error, 'General module error' );
+    like( $fml->module_error, $my_error, 'General module error' );
 
     diag('Returning API, removing key');
     $fml->api_url($api_url);
