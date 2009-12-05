@@ -35,6 +35,7 @@ SKIP: {
         author category date agree deserved text
     );
 
+    defined $item || plan skip_all => 'Item not defined... weird';
     isa_ok( $item, 'WWW::FMyLife::Item' );
 
     foreach my $attribute (@attributes) {
