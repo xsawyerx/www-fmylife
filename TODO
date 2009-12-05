@@ -10,15 +10,15 @@ General TODO stuff:
 - helper functions
 - once stable, submit to FML API applications
 
-0.08:
+0.10:
+    - refactor tests
+
+0.11:
     - add error test if someone runs top_* or flop_* with page option
     - specific numbers
     - categories
 
-0.09:
     - searches?
-
-0.10:
     - credentials
     - members' categories, new, favorites
     - finish /view
