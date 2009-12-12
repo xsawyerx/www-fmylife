@@ -16,8 +16,6 @@ WriteMakefile
           'INSTALLDIRS' => 'site',
           'EXE_FILES' => [],
           'PL_FILES' => {},
-          'test' => {
-                      'TESTS' => 't/*.t t/view/*.t'
-                    }
+          'TESTS' => 't/*.t t/view/*.t'
         )
 ;
