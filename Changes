@@ -1,6 +1,11 @@
 Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
+0.10    13.12.09
+        - recompiled some tests, mixed them together
+        - added more flags for skipping if item not defined
+        - updated README (apparently not updated since 0.08)
+
 0.09    05.12.09
         - fixed erred test to check for a general error
         - skip item if it's not defined in view/04-top_day.t

@@ -7,6 +7,7 @@ lib/WWW/FMyLife/Vote.pm
 LICENSE
 Makefile.PL
 MANIFEST
+MANIFEST.SKIP
 META.yml
 README
 t/00-load.t
@@ -21,13 +22,6 @@ t/meta.t
 t/minimumversion.t
 t/pod-coverage.t
 t/pod.t
-t/view/01-last.t
+t/view/00-mixed.t
+t/view/01-mixed_time.t
 t/view/02-random.t
-t/view/03-top.t
-t/view/04-top_day.t
-t/view/05-top_week.t
-t/view/06-top_month.t
-t/view/07-flop.t
-t/view/08-flop_day.t
-t/view/09-flop_week.t
-t/view/10-flop_month.t

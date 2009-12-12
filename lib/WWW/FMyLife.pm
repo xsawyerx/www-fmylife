@@ -5,7 +5,7 @@ use XML::Simple;
 use LWP::UserAgent;
 use WWW::FMyLife::Item;
 
-our $VERSION = '0.09';
+our $VERSION = '0.10';
 
 has 'username' => ( is => 'rw', isa => 'Str' );
 has 'password' => ( is => 'rw', isa => 'Str' );
@@ -242,7 +242,7 @@ WWW::FMyLife - Obtain FMyLife.com anecdotes via API
 
 =head1 VERSION
 
-Version 0.09
+Version 0.10
 
 =head1 SYNOPSIS
 
