@@ -3,7 +3,7 @@ package WWW::FMyLife::Item;
 use Moose;
 use Moose::Util::TypeConstraints;
 
-our $VERSION = '0.04';
+our $VERSION = '0.05';
 
 subtype 'FMLAuthor'
     => as 'HashRef'
@@ -17,16 +17,23 @@ subtype 'FMLVote'
         ( $ref->{'deserved'} =~ /^\d+$/ && $ref->{'agree'} =~ /^\d+$/ )
     };
 
-has 'id'            => ( is => 'rw', isa => 'Int'       );
-has 'author'        => ( is => 'rw', isa => 'FMLAuthor' );
-has 'date'          => ( is => 'rw', isa => 'Str'       );
-has 'category'      => ( is => 'rw', isa => 'Str'       );
-has 'text'          => ( is => 'rw', isa => 'Str'       );
-has 'vote'          => ( is => 'rw', isa => 'HashRef'   );
-has 'deserved'      => ( is => 'rw', isa => 'Int'       );
-has 'agree'         => ( is => 'rw', isa => 'Int'       );
-has 'comments'      => ( is => 'rw', isa => 'Int'       );
-has 'comments_flag' => ( is => 'rw', isa => 'Bool'      );
+subtype 'EmptyComment'
+    => as 'HashRef'
+    => where {
+        my $ref = shift;
+        scalar keys %{$ref} == 0;
+    };
+
+has 'id'            => ( is => 'rw', isa => 'Int'              );
+has 'author'        => ( is => 'rw', isa => 'FMLAuthor'        );
+has 'date'          => ( is => 'rw', isa => 'Str'              );
+has 'category'      => ( is => 'rw', isa => 'Str'              );
+has 'text'          => ( is => 'rw', isa => 'Str'              );
+has 'vote'          => ( is => 'rw', isa => 'HashRef'          );
+has 'deserved'      => ( is => 'rw', isa => 'Int'              );
+has 'agree'         => ( is => 'rw', isa => 'Int'              );
+has 'comments'      => ( is => 'rw', isa => 'Int|EmptyComment' );
+has 'comments_flag' => ( is => 'rw', isa => 'Bool'             );
 
 no Moose;
 __PACKAGE__->meta->make_immutable;
