@@ -1,6 +1,11 @@
 Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
+0.11    15.12.09
+        - comment is now Int|EmptyComment, which is an empty hash
+        - correct tests number in t/view/01-mixed_time.t
+        - removed testing_done() in t/view/01-mixed_time.t
+
 0.10    13.12.09
         - recompiled some tests, mixed them together
         - added more flags for skipping if item not defined
