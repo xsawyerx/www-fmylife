@@ -22,7 +22,7 @@ name: WWW-FMyLife
 provides:
   WWW::FMyLife:
     file: lib/WWW/FMyLife.pm
-    version: 0.11
+    version: 0.12
   WWW::FMyLife::Comment:
     file: lib/WWW/FMyLife/Comment.pm
     version: 0.02
@@ -39,4 +39,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/xsawyerx/www-fmylife/tree/master
-version: 0.11
+version: 0.12

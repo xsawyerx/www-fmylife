@@ -1,6 +1,9 @@
 Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
+0.12    17.12.09
+        - this time fixed tests number in 01-mixed_time.t for real
+
 0.11    15.12.09
         - comment is now Int|EmptyComment, which is an empty hash
         - correct tests number in t/view/01-mixed_time.t
