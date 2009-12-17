@@ -7,7 +7,7 @@ use strict;
 use warnings;
 use WWW::FMyLife;
 
-use Test::More tests => 288;
+use Test::More tests => 320;
 
 SKIP: {
     eval 'use Net::Ping';
