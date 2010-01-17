@@ -7,6 +7,20 @@ use warnings;
 use WWW::FMyLife;
 
 use Test::More tests => 366;
+use Sub::Override;
+
+my $data_file = File::Spec->catfile( qw/ t data eg.xml / );
+my $data      = q{};
+
+open my $fh, '<', $data_file or die "Can't open file $data_file: $!\n";
+{
+    local $/ = undef;
+    $data = <$fh>;
+}
+close $fh or die "Can't close file: $data_file\n";
+chomp $data;
+
+Sub::Override->new( 'WWW::FMyLife::_fetch_data' => sub { return $data } );
 
 SKIP: {
     eval 'use Net::Ping';
