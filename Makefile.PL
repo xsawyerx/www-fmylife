@@ -8,6 +8,7 @@ WriteMakefile
                            'LWP::UserAgent' => '0',
                            'Moose' => '0.86',
                            'Net::Ping' => '0',
+                           'Sub::Override' => '0',
                            'Test::Deep' => '0',
                            'Test::MockObject::Extends' => '0',
                            'Test::More' => '0.88',
@@ -17,7 +18,7 @@ WriteMakefile
           'EXE_FILES' => [],
           'PL_FILES' => {},
           'test' => {
-                      'TESTS' => 't/*.t t/view/*.t'
+                      'TESTS' => 't/*.t t/data/*.t t/view/*.t'
                     }
         )
 ;

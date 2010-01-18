@@ -5,7 +5,7 @@ use XML::Simple;
 use LWP::UserAgent;
 use WWW::FMyLife::Item;
 
-our $VERSION = '0.12';
+our $VERSION = '0.13';
 
 has 'username' => ( is => 'rw', isa => 'Str' );
 has 'password' => ( is => 'rw', isa => 'Str' );
@@ -242,7 +242,7 @@ WWW::FMyLife - Obtain FMyLife.com anecdotes via API
 
 =head1 VERSION
 
-Version 0.12
+Version 0.13
 
 =head1 SYNOPSIS
 
@@ -429,7 +429,7 @@ Apparently supports more options right now. Mainly for French version but seems 
 
 =head1 LICENSE AND COPYRIGHT
 
-Copyright 2009 Sawyer X, Tamir Lousky.
+Copyright 2010 Sawyer X, Tamir Lousky.
 
 This program is free software; you can redistribute it and/or modify it
 under the terms of either: the GNU General Public License as published

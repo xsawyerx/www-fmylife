@@ -1,6 +1,9 @@
 Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
+0.13    18.01.10
+        - FML gave me a private key, i'm using fixed xml data i got using it
+
 0.12    17.12.09
         - this time fixed tests number in 01-mixed_time.t for real
 

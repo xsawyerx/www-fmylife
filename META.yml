@@ -5,6 +5,7 @@ author:
   - 'Tamir Lousky <tlousky@cpan.org>'
 build_requires:
   Net::Ping: 0
+  Sub::Override: 0
   Test::Deep: 0
   Test::MockObject::Extends: 0
   Test::More: 0.88
@@ -22,7 +23,7 @@ name: WWW-FMyLife
 provides:
   WWW::FMyLife:
     file: lib/WWW/FMyLife.pm
-    version: 0.12
+    version: 0.13
   WWW::FMyLife::Comment:
     file: lib/WWW/FMyLife/Comment.pm
     version: 0.02
@@ -38,5 +39,5 @@ requires:
   XML::Simple: 2.18
 resources:
   license: http://dev.perl.org/licenses/
-  repository: http://github.com/xsawyerx/www-fmylife/tree/master
-version: 0.12
+  repository: http://github.com/xsawyerx/www-fmylife/
+version: 0.13
