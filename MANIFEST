@@ -25,3 +25,4 @@ t/pod.t
 t/view/00-mixed.t
 t/view/01-mixed_time.t
 t/view/02-random.t
+t/data/eg.xml
