@@ -14,6 +14,7 @@ my $builder = Module::Build->new(
         'Net::Ping'                 => 0,
         'Test::More'                => 0.88,
         'Test::Deep'                => 0,
+        'Sub::Override'             => 0,
         'Test::MockObject::Extends' => 0,
     },
     requires             => {
@@ -26,7 +27,7 @@ my $builder = Module::Build->new(
     create_makefile_pl   => 'traditional',
     meta_merge           => {
         resources => {
-            repository => 'http://github.com/xsawyerx/www-fmylife/tree/master',
+            repository => 'http://github.com/xsawyerx/www-fmylife/',
         },
         keywords   => [ 'fml', 'fmylife' ],
     },

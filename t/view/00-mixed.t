@@ -7,33 +7,23 @@ use warnings;
 use WWW::FMyLife;
 
 use Test::More tests => 366;
-use Sub::Override;
-
-my $data_file = File::Spec->catfile( qw/ t data eg.xml / );
-my $data      = q{};
-
-open my $fh, '<', $data_file or die "Can't open file $data_file: $!\n";
-{
-    local $/ = undef;
-    $data = <$fh>;
-}
-close $fh or die "Can't close file: $data_file\n";
-chomp $data;
-
-Sub::Override->new( 'WWW::FMyLife::_fetch_data' => sub { return $data } );
 
 SKIP: {
-    eval 'use Net::Ping';
-    $@ && skip 'Net::Ping required for this test' => 122;
+    eval 'use Sub::Override';
+    $@ && skip 'Sub::Override required for this test' => 366;
 
-    my $p = Net::Ping->new('syn', 2);
+    my $data_file = File::Spec->catfile( qw/ t data eg.xml / );
+    my $xml_data  = q{};
 
-    if ( ( ! $p->ping('google.com') ) && ( ! $p->ping('yahoo.com') ) ) {
-        $p->close;
-        skip q{Both Google and Yahoo down? most likely you're offline} => 122;
+    open my $fh, '<', $data_file or die "Can't open file $data_file: $!\n";
+    {
+        local $/ = undef;
+        $xml_data = <$fh>;
     }
+    close $fh or die "Can't close file: $data_file\n";
+    chomp $xml_data;
 
-    $p->close;
+    Sub::Override->new( 'WWW::FMyLife::_fetch_data' => sub { $xml_data } );
 
     my @methods = qw( last top flop );
     foreach my $method (@methods) {

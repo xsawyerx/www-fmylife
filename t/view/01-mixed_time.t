@@ -7,21 +7,24 @@ use strict;
 use warnings;
 use WWW::FMyLife;
 
-use Test::More tests => 320;
+use Test::More tests => 168;
 
 SKIP: {
-    eval 'use Net::Ping';
-    $@ && plan skip_all => 'Net::Ping required for this test';
+    eval 'use Sub::Override';
+    $@ && skip 'Sub::Override required for this test' => 168;
 
-    my $p = Net::Ping->new('syn', 2);
+    my $data_file = File::Spec->catfile( qw/ t data eg.xml / );
+    my $xml_data  = q{};
 
-    if ( ( ! $p->ping('google.com') ) && ( ! $p->ping('yahoo.com') ) ) {
-        $p->close;
-        plan skip_all =>
-            q{Both Google and Yahoo down? most likely you're offline};
+    open my $fh, '<', $data_file or die "Can't open file $data_file: $!\n";
+    {
+        local $/ = undef;
+        $xml_data = <$fh>;
     }
+    close $fh or die "Can't close file: $data_file\n";
+    chomp $xml_data;
 
-    $p->close;
+    Sub::Override->new( 'WWW::FMyLife::_fetch_data' => sub { $xml_data } );
 
     my @methods = qw(
         top_day  top_week  top_month
