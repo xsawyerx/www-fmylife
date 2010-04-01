@@ -10,8 +10,8 @@ build_requires:
   Test::MockObject::Extends: 0
   Test::More: 0.88
 configure_requires:
-  Module::Build: 0.35
-generated_by: 'Module::Build version 0.3513'
+  Module::Build: 0.36
+generated_by: 'Module::Build version 0.3603'
 keywords:
   - fml
   - fmylife
@@ -23,7 +23,7 @@ name: WWW-FMyLife
 provides:
   WWW::FMyLife:
     file: lib/WWW/FMyLife.pm
-    version: 0.14
+    version: 0.15
   WWW::FMyLife::Comment:
     file: lib/WWW/FMyLife/Comment.pm
     version: 0.02
@@ -40,4 +40,4 @@ requires:
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://github.com/xsawyerx/www-fmylife/
-version: 0.14
+version: 0.15
