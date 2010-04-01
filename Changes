@@ -1,6 +1,9 @@
 Revision history for WWW-FMyLife
 (format of DD/MM/YY)
 
+0.15
+        - patch allowing get_id and last of categories by Gavin Hanover!
+
 0.14    29.01.10
         - disabled error tests
 
