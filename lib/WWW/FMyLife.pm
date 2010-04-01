@@ -106,7 +106,20 @@ sub flop_month {
 
 sub last {
     my ( $self, $opts ) = @_;
-    my @items = $self->_parse_options( $opts, 'last' );
+    my $type = 'last';
+
+    if ( ref $opts eq 'HASH' && $opts->{'category'} ) {
+        $type = $opts->{'category'};
+    }
+
+    my @items = $self->_parse_options( $opts, $type );
+    return @items;
+}
+
+sub get_id {
+    my ( $self, $id, $opts ) = @_;
+    $opts->{'page'} = '/nocomment';
+    my @items = $self->_parse_options( $opts, $id  );
     return @items;
 }
 
@@ -140,6 +153,11 @@ sub _parse_options {
     my $xml = $self->_fetch_data("/view/$add_url/$page");
 
     $xml || return;
+
+    if ( my $id = $xml->{'items'}{'item'}{'id'} ) {
+        $xml->{'items'}{'item'} = { $id => $xml{'items'}{'item'} };
+        $xml->{'pages'}         = 1;
+    }
 
     $self->pages( $xml->{'pages'} );
 
